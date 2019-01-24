@@ -1,0 +1,53 @@
+/* form styling */
+div.button{
+	text-align: center;
+	padding-top: 10px;
+}
+
+div.button form{
+  color: gray;
+}
+
+div.button button{
+  margin-top: 10px;
+}
+/* end form styling */
+
+/* html styling */
+body {
+    background-color: #2F2F2F;
+    padding-left: 0;
+  }
+
+h1 {
+text-align: center;
+color: gray;
+}
+
+div.button h3 {
+display: inline-block;
+color: gray;
+}
+
+h2 {
+color: gray;
+}
+
+section h2 {
+text-align: center;
+}
+
+h3 {
+text-align: center;
+color: gray;
+}
+
+p.button {
+color: gray;
+}
+
+article p {
+text-align: center;
+color: white;
+}
+/* end html styling */
