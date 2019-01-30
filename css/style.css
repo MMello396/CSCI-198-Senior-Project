@@ -13,6 +13,33 @@ div.button button{
 }
 /* end form styling */
 
+/* coding page styling */
+.leftCol {
+  float: left;
+  width: 50%;
+}
+
+.rightCol {
+  float: left;
+  width: 50%;
+}
+
+.right2Col {
+  float: left;
+  width: 66.66%;
+}
+
+.codingArea{
+  margin: 1%;
+  padding: 1%;
+  width: 90%;
+}
+
+textarea{
+  align-content: center;
+}
+/* end coding page styling */
+
 /* list styling */
 nav {
   background-color: #404040;
