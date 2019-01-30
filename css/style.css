@@ -13,10 +13,45 @@ div.button button{
 }
 /* end form styling */
 
-/* html styling */
+/* list styling */
+nav {
+  background-color: #404040;
+  height: 48px;
+}
+nav ul{
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+}
+nav ul li{
+  padding: 0px;
+  margin: 0px;
+  float: left;
+}
+nav ul li button {
+  width: 100px;
+  height: 48px; 
+  border-style: solid;
+  border-top: 0px;
+  border-bottom: 0px;
+  border-left: 0px;
+  border-color: white;
+  background-color: #404040;
+  color: white;
+  float: left;
+}
+
+button:hover{
+  color: black;
+  background-color: white;
+  transition-duration: .5s;
+}
+/* end styling */
+
+/* page styling */
 body {
-    background-color: #2F2F2F;
-    padding-left: 0;
+    background-color: #606060;
+    margin: 0;
   }
 
 h1 {
@@ -50,4 +85,4 @@ article p {
 text-align: center;
 color: white;
 }
-/* end html styling */
+/* end page styling */
