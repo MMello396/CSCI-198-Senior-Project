@@ -35,6 +35,11 @@ div.button button{
   width: 90%;
 }
 
+#runCode{
+  margin: 1%;
+  display: block;
+}
+
 textarea{
   align-content: center;
 }
