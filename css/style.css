@@ -17,11 +17,15 @@ div.button button{
 .leftCol {
   float: left;
   width: 50%;
+  display: flex;
+  justify-content: center;
 }
 
 .rightCol {
   float: left;
   width: 50%;
+  display: flex;
+  justify-content: center;
 }
 
 .right2Col {
@@ -32,11 +36,13 @@ div.button button{
 .codingArea{
   margin: 1%;
   padding: 1%;
-  width: 90%;
+  width: 100%;
 }
 
 textarea{
-  align-content: center;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
 }
 /* end coding page styling */
 
@@ -83,16 +89,16 @@ body {
 
 h1 {
 text-align: center;
-color: gray;
+color: #404040;
 }
 
 div.button h3 {
 display: inline-block;
-color: gray;
+color: #404040;
 }
 
 h2 {
-color: gray;
+color: #404040;
 }
 
 section h2 {
@@ -100,16 +106,16 @@ text-align: center;
 }
 
 h3 {
-text-align: center;
-color: gray;
+color: #404040;
+font-weight: bold;
 }
 
 p.button {
-color: gray;
+color: #404040;
 }
 
 article p {
 text-align: center;
-color: white;
+color: #404040;
 }
 /* end page styling */
