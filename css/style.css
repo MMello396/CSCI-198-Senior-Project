@@ -39,6 +39,11 @@ div.button button{
   width: 100%;
 }
 
+#runCode{
+  margin: 1%;
+  display: block;
+}
+
 textarea{
   display: inline-block;
   margin-left: auto;

@@ -9,13 +9,13 @@
     <nav>
         <ul style="list-style-type: none;">
             <li>
-                <a href="menu.html"><button id="b1" type="button">Menu</button></a>
+                <a href="menu.html"><button id="menu" type="button">Menu</button></a>
             </li>
             <li>
                 <button id="b1" type="button" onclick="alert('Hello World')">I'm a button</button>
             </li>
             <li>
-                <button id="b1" type="button" onclick="alert('Hello World')">I'm a button</button>
+                <button id="b2" type="button" onclick="alert('Hello World')">I'm a button</button>
             </li>
         </ul>
     </nav>
@@ -54,11 +54,15 @@
             </section>
         </div>
         <div class="leftCol">
-            <textarea class="codingArea" name="code" rows="10" cols="30" placeholder="Type your code here"></textarea>
+            <textarea class="codingArea" name="code" rows="10" cols="30">The cat coded on this side.</textarea>
+            <button id="runCode" type="button" onclick="ajaxCall()">Run</button>
         </div>
         <div class="rightCol">
             <textarea readonly="readonly" class="codingArea" name="debug" rows="10" cols="30" placeholder="Debugging statements appear here"></textarea>
         </div>
 </body>
+<footer>
 
+</footer>
+<script src="../js/codeHandler.js" charset="utf-8"></script>
 </html>
