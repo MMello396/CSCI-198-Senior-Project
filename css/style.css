@@ -33,6 +33,10 @@ div.button button{
   width: 66.66%;
 }
 
+.instructions{
+  padding-left: 1%;
+}
+
 .codingArea{
   margin: 1%;
   padding: 1%;
@@ -41,19 +45,20 @@ div.button button{
 
 #runCode{
   margin: 1%;
-  display: block;
+  display: inline-block;
 }
 
 textarea{
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
+  background-color: #e0e0e0;
 }
 /* end coding page styling */
 
 /* list styling */
 nav {
-  background-color: #404040;
+  background-color: #303030;
   height: 48px;
 }
 nav ul{
@@ -73,28 +78,27 @@ nav ul li button {
   border-top: 0px;
   border-bottom: 0px;
   border-left: 0px;
-  border-color: white;
-  background-color: #404040;
-  color: white;
+  border-color: #e0e0e0;
+  background-color: #303030;
+  color: #e0e0e0;
   float: left;
 }
 
 button:hover{
   color: black;
-  background-color: white;
+  background-color: #e0e0e0;
   transition-duration: .5s;
 }
 /* end styling */
 
 /* page styling */
 body {
-    background-color: #606060;
+    background-color: #404040;
     margin: 0;
   }
 
 h1 {
-text-align: center;
-color: #404040;
+color: #e0e0e0;
 }
 
 div.button h3 {
@@ -103,11 +107,11 @@ color: #404040;
 }
 
 h2 {
-color: #404040;
+color: #e0e0e0;
 }
 
-section h2 {
-text-align: center;
+section{
+color: #e0e0e0;
 }
 
 h3 {

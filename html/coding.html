@@ -23,42 +23,45 @@
 
 <body>
         <div class="instructions" name="instructions">
-            <h3>Instructions</h3>
+            <h1>Title of Problem</h1>
             <section id="objective">
-                <h3>Objective:</h3>
+                <h2>Objective:</h2>
                 Some text describing the learning objective.
             </section>
             <section id="task">
-                <h3>Task:</h3>
+                <h2>Task:</h2>
                 Some text describing the task.
             </section>
             <section id="inputFormat">
-                <h3>Input Format:</h3>
+                <h2>Input Format:</h2>
                 Some text describing the input format.
             </section>
             <section id="constraints">
-                <h3>Constraints:</h3>
+                <h2>Constraints:</h2>
                 Some text describing the constraints.
             </section>
             <section id="outputFormat">
-                <h3>Output Format:</h3>
+                <h2>Output Format:</h2>
                 Some text describing the output format.
             </section>
             <section id="sampleInput">
-                <h3>Sample Input:</h3>
+                <h2>Sample Input:</h2>
                 A sample input.
             </section>
             <section id="sampleOutput">
-                <h3>Sample Output</h3>
+                <h2>Sample Output</h2>
                 A sample output.
             </section>
         </div>
         <div class="leftCol">
-            <textarea class="codingArea" name="code" rows="10" cols="30">The cat coded on this side.</textarea>
-            <button id="runCode" type="button" onclick="ajaxCall()">Run</button>
+            <textarea class="codingArea" id="code" rows="20" cols="30" placeholder="Write code here"></textarea>
+            
         </div>
         <div class="rightCol">
-            <textarea readonly="readonly" class="codingArea" name="debug" rows="10" cols="30" placeholder="Debugging statements appear here"></textarea>
+            <textarea readonly="readonly" class="codingArea" id="debug" rows="20" cols="30" placeholder="Debugging statements appear here"></textarea>
+        </div>
+        <div class="leftCol">
+            <button id="runCode" type="button" onclick="ajaxCall()">Run</button>
         </div>
 </body>
 <footer>
