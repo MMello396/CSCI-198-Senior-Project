@@ -1,0 +1,10 @@
+{
+    "title": "Hello World!",
+    "objective": "Test my AJAX for updating the problem dynamically",
+    "task": "Print \"Hello World!\" on the screen.",
+    "inputFormat": "N/A",
+    "constraints": "Not really any to speak of.",
+    "outputFormat": "A string of text that looks a lot like \"Hello World!\"",
+    "sampleInput": "N/A",
+    "sampleOutput": "Hello world!"
+}

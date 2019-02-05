@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Coding</title>
+    <title>Autograder</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <header>
@@ -12,45 +12,58 @@
                 <a href="menu.html"><button id="menu" type="button">Menu</button></a>
             </li>
             <li>
-                <button id="b1" type="button" onclick="alert('Hello World')">I'm a button</button>
+                <button id="p1" type="button" onclick="updateProblem()">Problem 1</button>
             </li>
             <li>
-                <button id="b2" type="button" onclick="alert('Hello World')">I'm a button</button>
+                <button id="p2" type="button" onclick="alert('Hello World')">Problem 2</button>
             </li>
         </ul>
     </nav>
 </header>
-
 <body>
         <div class="instructions" name="instructions">
-            <h1>Title of Problem</h1>
-            <section id="objective">
+            <h1 id="title">Title of Problem</h1>
+            <section>
                 <h2>Objective:</h2>
-                Some text describing the learning objective.
+                <p id="objective">
+                    Some text describing the learning objective.
+                </p> 
             </section>
-            <section id="task">
+            <section>
                 <h2>Task:</h2>
-                Some text describing the task.
+                <p id="task">
+                    Some text describing the task.
+                </p>
             </section>
-            <section id="inputFormat">
+            <section>
                 <h2>Input Format:</h2>
-                Some text describing the input format.
+                <p id="inputFormat">
+                    Some text describing the input format.
+                </p>
             </section>
-            <section id="constraints">
+            <section>
                 <h2>Constraints:</h2>
-                Some text describing the constraints.
+                <p id="constraints">
+                    Some text describing the constraints.
+                </p>
             </section>
-            <section id="outputFormat">
+            <section>
                 <h2>Output Format:</h2>
-                Some text describing the output format.
+                <p id="outputFormat">
+                    Some text describing the output format.
+                </p>
             </section>
-            <section id="sampleInput">
+            <section>
                 <h2>Sample Input:</h2>
-                A sample input.
+                <p id="sampleInput">
+                    A sample input.
+                </p>
             </section>
-            <section id="sampleOutput">
+            <section>
                 <h2>Sample Output</h2>
-                A sample output.
+                <p id="sampleOutput">
+                    A sample output.
+                </p>
             </section>
         </div>
         <div class="leftCol">
