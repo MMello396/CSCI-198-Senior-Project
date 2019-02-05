@@ -4,6 +4,7 @@
 <head>
     <title>Autograder</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="../node_modules/monaco-editor/min/vs/editor/editor.main.css">
 </head>
 <header>
     <nav>
@@ -85,15 +86,31 @@
             </section>
         </div>
         <div class="leftCol">
-            <textarea class="codingArea" id="code" rows="20" cols="30" placeholder="Write code here"></textarea>
-            
+            <div id="container"></div>
         </div>
         <div class="rightCol">
             <textarea readonly="readonly" class="codingArea" id="debug" rows="20" cols="30" placeholder="Debugging statements appear here"></textarea>
         </div>
         <div class="leftCol">
-            <button id="runCode" type="button" onclick="debugCall()">Run</button>
+            <button id="runCode" type="button" onclick="debugCall()">Run Your Code</button>
         </div>
+
+        <script>var require = { paths: { 'vs': '../node_modules/monaco-editor/min/vs' } };</script>
+        <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
+        <script src="../node_modules/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+        <script src="../node_modules/monaco-editor/min/vs/editor/editor.main.js"></script>
+        
+        <script>
+            var editor = monaco.editor.create(document.getElementById('container'), {
+                value: [
+                    'function x() {',
+                    '\tconsole.log("Hello world!");',
+                    '}'
+                ].join('\n'),
+                language: 'javascript'
+            });
+            monaco.editor.setTheme('vs-dark');
+        </script>
 </body>
 <footer>
 
