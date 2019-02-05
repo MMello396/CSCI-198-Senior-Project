@@ -52,6 +52,7 @@ textarea{
   display: inline-block;
   margin-left: auto;
   margin-right: auto;
+  font-size: 14pt;
   background-color: #e0e0e0;
 }
 /* end coding page styling */
@@ -61,16 +62,19 @@ nav {
   background-color: #303030;
   height: 48px;
 }
+
 nav ul{
   margin: 0px;
   padding: 0px;
   display: inline-block;
 }
+
 nav ul li{
   padding: 0px;
   margin: 0px;
   float: left;
 }
+
 nav ul li button {
   width: 100px;
   height: 48px; 

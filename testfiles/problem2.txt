@@ -1,0 +1,10 @@
+{
+    "title": "Simple Math",
+    "objective": "Learn how to use C++ to do basic math for you.",
+    "task": "Output the result of multiplying two inputs, X and Y together.",
+    "inputFormat": "Two successive numbers seperated by a space.",
+    "constraints": "Must work with any two inputs.",
+    "outputFormat": "The resulting number of the input values.",
+    "sampleInput": "2 4",
+    "sampleOutput": "8"
+}
