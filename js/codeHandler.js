@@ -1,18 +1,24 @@
-function debugCall(){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+function debugCall(codeValue){    
+
+    alert(codeValue);
+    alert(typeof(codeValue));
+    
+
+    // Use AJAX to send source code to server as a string
+    var xhttp = new XMLHttpRequest()
+    xhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
             document.getElementById("debug").innerHTML = this.responseText;
         }
-    };
-    xhttp.open("GET", "../testfiles/debug_test.txt", true);
+    }
+    xhttp.open("POST", "../php/ajaxtest.php?code="+ encodeURIComponent(codeValue), true);
     xhttp.send();
 }
 
 function updateProblem1(){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
+    var xhttp = new XMLHttpRequest()
+    xhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
             var parsedProblem = JSON.parse(this.responseText);
             document.getElementById("title").innerHTML = parsedProblem.title;
             document.getElementById("objective").innerHTML = parsedProblem.objective;
@@ -23,15 +29,15 @@ function updateProblem1(){
             document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
             document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
         }
-    };
+    }
     xhttp.open("GET", "../testfiles/problem1.txt", true);
     xhttp.send();
 }
 
 function updateProblem2(){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
+    var xhttp = new XMLHttpRequest()
+    xhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
             var parsedProblem = JSON.parse(this.responseText);
             document.getElementById("title").innerHTML = parsedProblem.title;
             document.getElementById("objective").innerHTML = parsedProblem.objective;
@@ -42,31 +48,31 @@ function updateProblem2(){
             document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
             document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
         }
-    };
+    }
     xhttp.open("GET", "../testfiles/problem2.txt", true);
     xhttp.send();
 }
 
 function updateProblem3(){
-    alert("Problem not made yet... check back later.")
+    alert("Problem not made yet... check back later.");
 }
 
 function updateProblem4(){
-    alert("Problem not made yet... check back later.")
+    alert("Problem not made yet... check back later.");
 }
 
 function updateProblem5(){
-    alert("Problem not made yet... check back later.")
+    alert("Problem not made yet... check back later.");
 }
 
 function updateProblem6(){
-    alert("Problem not made yet... check back later.")
+    alert("Problem not made yet... check back later.");
 }
 
 function updateProblem7(){
-    alert("Problem not made yet... check back later.")
+    alert("Problem not made yet... check back later.");
 }
 
 function updateProblem8(){
-    alert("Problem not made yet... check back later.")
+    alert("Problem not made yet... check back later.");
 }
