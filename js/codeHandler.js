@@ -1,9 +1,5 @@
 function debugCall(codeValue){    
 
-    alert(codeValue);
-    alert(typeof(codeValue));
-    
-
     // Use AJAX to send source code to server as a string
     var xhttp = new XMLHttpRequest()
     xhttp.onreadystatechange = function(){
@@ -30,7 +26,7 @@ function updateProblem1(){
             document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
         }
     }
-    xhttp.open("GET", "../testfiles/problem1.txt", true);
+    xhttp.open("POST", "../problemFiles/problem1.txt", true);
     xhttp.send();
 }
 
@@ -49,7 +45,7 @@ function updateProblem2(){
             document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
         }
     }
-    xhttp.open("GET", "../testfiles/problem2.txt", true);
+    xhttp.open("POST", "../problemFiles/problem2.txt", true);
     xhttp.send();
 }
 
