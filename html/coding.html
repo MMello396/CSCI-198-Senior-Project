@@ -9,6 +9,8 @@
     <link rel="stylesheet" data-name="vs/editor/editor.main" href="../node_modules/monaco-editor/min/vs/editor/editor.main.css">
 </head>
 <header>
+    <!-- This is the navigation bar to navigate the site. Would like to update to
+         a more fluid and robust nav -->
     <nav>
         <ul style="list-style-type: none;">
             <li>
@@ -42,6 +44,8 @@
     </nav>
 </header>
 <body>
+        <!-- This is the start of the data fields for problem instructions 
+             which is dynamically filled through AJAX calls to the server -->
         <div class="instructions" name="instructions">
             <h1 id="title">Title of Problem</h1>
             <section>
@@ -87,9 +91,13 @@
                 </p>
             </section>
         </div>
+
+        <!-- This is where the Monaco editor will be rendered -->
         <div class="leftCol">
             <div id="container"></div>
         </div>
+        <!-- This is the debug text area which houses the PHP responses
+             from compilation -->
         <div class="rightCol">
             <textarea readonly="readonly" class="codingArea" id="debug" rows="20" cols="30" placeholder="Debugging statements appear here"></textarea>
         </div>
@@ -97,6 +105,7 @@
             <button id="runCode" type="button" onclick="debugCall(editor.getValue())">Run Your Code</button>
         </div>
 
+        <!-- This is the various things needed for initializing the Monaco editor -->
         <script>var require = { paths: { 'vs': '../node_modules/monaco-editor/min/vs' } };</script>
         <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
         <script src="../node_modules/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
@@ -109,7 +118,7 @@
                     'using namespace std;',
                     '',
                     'int main(){',
-                    '\tcout<<"Hello world!";',
+                    '\t/* Enter Code Here */',
                     'return 0;',
                     '}'
                 ].join('\n'),
