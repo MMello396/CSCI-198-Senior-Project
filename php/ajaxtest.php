@@ -6,8 +6,11 @@
 
     // Need to be able to detemine compiler path 
     // dynamically somehow..
-    $compilerPath = "C:/cygwin64/bin/g++"; // For Desktop
+    
+    // $compilerPath = "C:/cygwin64/bin/g++"; // For Desktop
     // $compilerPath = ""; // For MAC
+    // $compiler = file_exists($compilerPath);
+    // if ($compiler == False) echo "True";
 
     // Grabs the code from the xmlHTTPrequest variable named code
     // Note: (had to use JS encodeURIcomponent to get it to pass the string correctly)
@@ -41,7 +44,8 @@
     // with a specific name for the outputted 
     // compiled file on success or the errors 
     // output and compile failure.
-    $compileCall = "{$compilerPath} -o {$fileName} {$filePath} 2>&1";
+    // $compileCall = "{$compilerPath} -o {$fileName} {$filePath} 2>&1";
+    $compileCall = "g++ -o {$fileName} {$filePath} 2>&1";
     // echo $compileCall . "\n\n";
     
     // Note: Here are options for g++ compilation that can be used in different cases
