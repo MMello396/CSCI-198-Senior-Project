@@ -69,5 +69,10 @@
     fclose($sourceFile);
 
     // TODO: need to make code for grabbing the path after compilation and dynamically creating and grabbing that path
-    echo exec("{$fileName}.exe");
+    exec("{$fileName}.exe", $returnedResult);
+    foreach($returnedResult as $line){
+        echo $line;
+        echo "\n";
+    }
+    
 ?>

@@ -1,3 +1,8 @@
+// An event listener for resizing the Monaco text editor 
+window.addEventListener("resize", function(){
+    this.editor.layout();
+});
+
 function debugCall(codeValue){    
 
     // Use AJAX to send source code to server as a string
