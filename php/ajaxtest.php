@@ -27,13 +27,20 @@ function exec_timeout($cmd, $timeout) {
   
     // Turn the timeout into microseconds.
     $timeout = $timeout * 1000000;
-  
+    
     // Output buffer.
     $buffer = '';
-  
+
+    // Debugging timeout
+    echo "Time to run: {$timeout} Microseconds\n";
+
     // While we have time to wait.
     while ($timeout > 0) {
       $start = microtime(true);
+
+      // Debugging timeout
+    //   $buffer .= "Start time: {$start} Microseconds\n";
+      echo "Start time: {$start} Microseconds\n";
   
       // Wait until we have output or the timer expired.
       $read  = array($pipes[1]);
@@ -48,14 +55,19 @@ function exec_timeout($cmd, $timeout) {
       // Read the contents from the buffer.
       // This function will always return immediately as the stream is none-blocking.
       $buffer .= stream_get_contents($pipes[1]);
-  
+
       if (!$status['running']) {
         // Break from this loop if the process exited before the timeout.
         break;
       }
   
       // Subtract the number of microseconds that we waited.
-      $timeout -= (microtime(true) - $start) * 1000000;
+      $elapsed = (microtime(true) - $start) * 1000000;
+      $timeout -= $elapsed;
+
+      // Debugging timeout
+    //   $buffer .= "Time elapsed for this loop: {$elapsed} microseconds\n";
+      echo "Time elapsed for this loop: {$elapsed} microseconds\n";
     }
   
     // Check if there were any errors.
@@ -83,7 +95,7 @@ function exec_timeout($cmd, $timeout) {
     // Note: (had to use JS encodeURIcomponent to get it to pass the string correctly)
     $sCode = $_REQUEST["code"];
     // $uName = $_REQUEST["user"];
-    $time = .5;
+    $time = .1;
 
     // hard coded username for development without user system built yet
     $userName = "user1"; // eventually needs to be $uName
