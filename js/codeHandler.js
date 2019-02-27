@@ -4,6 +4,8 @@ window.addEventListener("resize", function(){
 });
 
 function debugCall(codeValue){    
+    // Reset debug window
+    document.getElementById("debug").innerHTML = "";
 
     // Use AJAX to send source code to server as a string
     var xhttp = new XMLHttpRequest()
@@ -12,7 +14,7 @@ function debugCall(codeValue){
             document.getElementById("debug").innerHTML = this.responseText;
         }
     }
-    xhttp.open("POST", "../php/ajaxtest.php?code="+ encodeURIComponent(codeValue), true);
+    xhttp.open("POST", "../php/codeRun.php?code="+ encodeURIComponent(codeValue), true);
     xhttp.send();
 }
 

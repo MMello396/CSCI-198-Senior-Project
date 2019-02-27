@@ -32,42 +32,33 @@ function exec_timeout($cmd, $timeout) {
     $buffer = '';
 
     // Debugging timeout
-    echo "Time to run: {$timeout} Microseconds\n";
+    // echo "Time to run: {$timeout} Microseconds\n";
 
     // While we have time to wait.
     while ($timeout > 0) {
-      $start = microtime(true);
+        $start = microtime(true);
+  
+        // Wait until we have output or the timer expired.
+        $read  = array($pipes[1]);
+        $other = array();
+        stream_select($read, $other, $other, 0, $timeout);
+  
+        // Get the status of the process.
+        // Do this before we read from the stream,
+        // this way we can't lose the last bit of output if the process dies between these functions.
+        $status = proc_get_status($process);
 
-      // Debugging timeout
-    //   $buffer .= "Start time: {$start} Microseconds\n";
-      echo "Start time: {$start} Microseconds\n";
-  
-      // Wait until we have output or the timer expired.
-      $read  = array($pipes[1]);
-      $other = array();
-      stream_select($read, $other, $other, 0, $timeout);
-  
-      // Get the status of the process.
-      // Do this before we read from the stream,
-      // this way we can't lose the last bit of output if the process dies between these     functions.
-      $status = proc_get_status($process);
-  
-      // Read the contents from the buffer.
-      // This function will always return immediately as the stream is none-blocking.
-      $buffer .= stream_get_contents($pipes[1]);
+        // Read the contents from the buffer.
+        // This function will always return immediately as the stream is none-blocking.
+        $buffer .= stream_get_contents($pipes[1]);
 
-      if (!$status['running']) {
-        // Break from this loop if the process exited before the timeout.
-        break;
-      }
-  
-      // Subtract the number of microseconds that we waited.
-      $elapsed = (microtime(true) - $start) * 1000000;
-      $timeout -= $elapsed;
-
-      // Debugging timeout
-    //   $buffer .= "Time elapsed for this loop: {$elapsed} microseconds\n";
-      echo "Time elapsed for this loop: {$elapsed} microseconds\n";
+        if (!$status['running']) {
+            // Break from this loop if the process exited before the timeout.
+            break;
+        }
+    
+        $elapsed = (microtime(true) - $start) * 1000000;
+        $timeout -= $elapsed;
     }
   
     // Check if there were any errors.
@@ -76,15 +67,20 @@ function exec_timeout($cmd, $timeout) {
     if (!empty($errors)) {
       throw new \Exception($errors);
     }
-  
+
+    // Error message display for timeout
+    if($timeout < 0){
+        echo "Your program terminated due to timeout.";
+    }
+    
     // Kill the process in case the timeout expired and it's still running.
     // If the process already exited this won't do anything.
     proc_terminate($process, 9);
   
     // Close all streams.
-    fclose($pipes[0]);
-    fclose($pipes[1]);
-    fclose($pipes[2]);
+    fclose($pipes[0]); //stdin
+    fclose($pipes[1]); //stdout
+    fclose($pipes[2]); //stderr
   
     proc_close($process);
   
@@ -94,8 +90,8 @@ function exec_timeout($cmd, $timeout) {
     // Grabs the code and username from the xmlHTTPrequest variable named code
     // Note: (had to use JS encodeURIcomponent to get it to pass the string correctly)
     $sCode = $_REQUEST["code"];
-    // $uName = $_REQUEST["user"];
-    $time = .1;
+    // $uName = $_REQUEST["username"];
+    $time = 2;
 
     // hard coded username for development without user system built yet
     $userName = "user1"; // eventually needs to be $uName
@@ -140,10 +136,10 @@ function exec_timeout($cmd, $timeout) {
     // debug screen if compilation fails. Returns
     // resulting execution is succeeds
     if ($result == 1) {
-        echo $output;
+      echo $output;
     }
     else{
-        echo exec_timeout($command, $time);
+      echo exec_timeout($command, $time);
     }
 
     // close file after compilation is complete

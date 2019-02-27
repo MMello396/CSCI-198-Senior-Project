@@ -15,3 +15,17 @@ return 0;
 Error:
 <br />
 <b>Fatal error</b>:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 67108888 bytes) in <b>C:\xampp\htdocs\Autograder\php\ajaxtest.php</b> on line <b>50</b><br />
+
+Code for timeout check
+
+#include <chrono>
+#include <thread>
+
+int main() {
+    using namespace std::this_thread;     // sleep_for, sleep_until
+    using namespace std::chrono_literals; // ns, us, ms, s, h, etc.
+    using std::chrono::system_clock;
+
+    // sleep_for(10ns);
+    sleep_until(system_clock::now() + 3s);
+}
