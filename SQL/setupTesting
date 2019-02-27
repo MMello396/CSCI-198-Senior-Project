@@ -1,0 +1,27 @@
+DROP DATABASE usersdb;
+CREATE DATABASE usersdb;
+
+CREATE TABLE users (
+username VARCHAR(30) PRIMARY KEY, 
+pass VARCHAR(255) NOT NULL,
+firstname VARCHAR(30) NOT NULL, 
+lastname VARCHAR(30) NOT NULL,
+email VARCHAR(30) NOT NULL
+);
+
+Create Table problems (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+username VARCHAR(30) NOT NULL, 
+problem VARCHAR(30) NOT NULL,
+compileErrors VARCHAR(30) NOT NULL,
+compileCount VARCHAR(30) NOT NULL,
+comp_date TIMESTAMP
+);
+
+INSERT INTO users (username , pass, firstname , lastname , email) VALUES ('mmello396', 'password2', 'matt' , 'mello' , 'matt@hotnmail.com');
+
+INSERT INTO problems (, username, problem, compileErrors, reg_date ) VALUES (,'mmello396', '1', 'none', )
+
+Clean Up
+
+DROP DATABASE usersdb;

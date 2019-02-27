@@ -15,9 +15,12 @@ $sql = "INSERT INTO users (username, pass, firstname, lastname, email)
 Values ('{$userName}', '{$password}', '{$firstName}', '{$lastName}', '{$email}')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "User created successfully<br><br>";
+    echo "True";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    // Error handleing
+    if( $conn->error == "Duplicate entry '{$userName}' for key 'PRIMARY'"){
+        echo "1";
+    }  
 }
 
 

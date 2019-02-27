@@ -111,8 +111,33 @@ function checkAvail(user,pass,fName,lName,email){
     var xhttp = new XMLHttpRequest()
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            form.innerHTML = this.responseText;
-            loginButtons();
+            // change buttons if success, otherwise report issue.
+            if(this.responseText == "True"){
+                form.innerHTML = "User created successfully.<br><br>";
+                loginButtons();
+            }
+            else if(this.responseText == "1"){
+                form.innerHTML = "Username already taken, choose another.<br><br>";
+                
+                var unField = document.createElement("input");
+                unField.setAttribute("type", "text");
+                unField.setAttribute("name", "username");
+                unField.setAttribute("placeholder", "Username");
+                unField.setAttribute("id","uName");
+
+                var pwField = document.createElement("input");
+                pwField.setAttribute("type", "text");
+                pwField.setAttribute("name", "password");
+                pwField.setAttribute("placeholder", "Password");
+                pwField.setAttribute("id","pass");
+
+                form.append(unField);
+                form.append(document.createElement("br"));
+                form.append(document.createElement("br"));
+                form.append(pwField);
+
+                newUser();
+            }
         }
     }
     xhttp.open("POST", "../php/connect.php?username="+encodeURIComponent(user)+"&password="+encodeURIComponent(pass)+"&firstName="+encodeURIComponent(fName)+"&lastName="+encodeURIComponent(lName)+"&email="+encodeURIComponent(email), true);
