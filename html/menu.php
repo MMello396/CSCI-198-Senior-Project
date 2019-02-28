@@ -8,7 +8,7 @@
     <nav>
         <ul style="list-style-type: none;">
             <li>
-                <a href="coding.html"><button id="b1" type="button">Data Structure 1</button></a> 
+                <a href="coding.php"><button id="b1" type="button">Data Structure 1</button></a> 
             </li>
             <li>
                 <button id="b1" type="button" onclick="alert('Hello World')">Data Structure 2</button>

@@ -6,6 +6,20 @@ var form = document.getElementById("myform");
 // displays the form for creating a login
 function newUser(){
 
+    clearFields();
+
+    var unField = document.createElement("input");
+    unField.setAttribute("type", "text");
+    unField.setAttribute("name", "username");
+    unField.setAttribute("placeholder", "Username");
+    unField.setAttribute("id", "uName");
+
+    var pwField = document.createElement("input");
+    pwField.setAttribute("type", "text");
+    pwField.setAttribute("name", "password");
+    pwField.setAttribute("placeholder", "Password");
+    pwField.setAttribute("id", "pass");
+
     var fnField = document.createElement("input");
     fnField.setAttribute("type","text");
     fnField.setAttribute("name", "firstname");
@@ -24,6 +38,10 @@ function newUser(){
     emailField.setAttribute("placeholder", "Email");
     emailField.setAttribute("id","email");
     
+    form.append(unField);
+    form.append(document.createElement("br"));
+    form.append(document.createElement("br"));
+    form.append(pwField);
     form.append(document.createElement("br"));
     form.append(document.createElement("br"));
     form.append(fnField);
@@ -39,6 +57,9 @@ function newUser(){
 
 // displays the login form
 function loginButtons(){
+
+    clearFields();
+
     var unField = document.createElement("input");
     unField.setAttribute("type", "text");
     unField.setAttribute("name", "username");
@@ -73,12 +94,9 @@ function newUserButtons(){
 
 // checks for user in database
 function attemptLogin(){
-    
     var user = document.getElementById("uName").value;
-
     var pass = document.getElementById("pass").value;
 
-    alert(user + "\n" + pass);
     checkUser(user, pass);
 
     // check if user is in the database
@@ -86,7 +104,7 @@ function attemptLogin(){
 
     // if yes, send to menu
     if (userPresent){
-        location.href = 'menu.html';
+        location.href = 'menu.php';
     }
     else {
 
@@ -155,4 +173,10 @@ function checkUser(user, password){
     }
     xhttp.open("POST", "../php/connect.php?username="+encodeURIComponent(user)+"&password="+encodeURIComponent(password), true);
     xhttp.send();
+}
+
+function clearFields(){
+    while(form.firstChild){
+        form.removeChild(form.firstChild);
+    }   
 }

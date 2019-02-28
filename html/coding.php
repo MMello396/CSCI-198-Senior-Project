@@ -14,7 +14,7 @@
     <nav>
         <ul style="list-style-type: none;">
             <li>
-                <a href="menu.html"><button id="menu" type="button">Menu</button></a>
+                <a href="menu.php"><button id="menu" type="button">Menu</button></a>
             </li>
             <li>
                 <button id="p1" type="button" onclick="updateProblem1()">Problem 1</button>
