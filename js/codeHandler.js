@@ -3,7 +3,7 @@ window.addEventListener("resize", function(){
     this.editor.layout();
 });
 
-function sendCode(code,user){
+function sendCode(code,problem,user){
     // Reset debug window
     document.getElementById("debug").innerHTML = "";
 
@@ -11,14 +11,14 @@ function sendCode(code,user){
     var timeout = setTimeout(kill,3000);
 
     // Send code
-    debugCall(code,user,timeout);
+    debugCall(code,problem,user,timeout);
 }
 
 function kill(){
     killProgram(user);
 }
 
-function debugCall(codeValue,user,timeout){    
+function debugCall(codeValue,problem,user,timeout){    
     // Use AJAX to send source code to server as a string
     var xhttp = new XMLHttpRequest()
     xhttp.onreadystatechange = function(){
@@ -27,7 +27,7 @@ function debugCall(codeValue,user,timeout){
             clearTimeout(timeout);
         }
     }
-    xhttp.open("POST", "../php/codeRun.php?code="+encodeURIComponent(codeValue)+"&username="+encodeURIComponent(user), true);
+    xhttp.open("POST", "../php/codeRun.php?code="+encodeURIComponent(codeValue)+"&problem="+encodeURIComponent(problem)+"&username="+encodeURIComponent(user), true);
     xhttp.send();
 }
 

@@ -11,6 +11,7 @@ function updateProblem1(){
             document.getElementById("outputFormat").innerHTML = parsedProblem.outputFormat;
             document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
             document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
+            problem = 1;
         }
     }
     xhttp.open("POST", "../problemFiles/problem1.txt", true);
@@ -30,6 +31,7 @@ function updateProblem2(){
             document.getElementById("outputFormat").innerHTML = parsedProblem.outputFormat;
             document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
             document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
+            problem = 2;
         }
     }
     xhttp.open("POST", "../problemFiles/problem2.txt", true);
@@ -38,24 +40,30 @@ function updateProblem2(){
 
 function updateProblem3(){
     alert("Problem not made yet... check back later.");
+    problem = 3;
 }
 
 function updateProblem4(){
     alert("Problem not made yet... check back later.");
+    problem = 4;
 }
 
 function updateProblem5(){
     alert("Problem not made yet... check back later.");
+    problem = 5;
 }
 
 function updateProblem6(){
     alert("Problem not made yet... check back later.");
+    problem = 6;
 }
 
 function updateProblem7(){
     alert("Problem not made yet... check back later.");
+    problem = 7;
 }
 
 function updateProblem8(){
     alert("Problem not made yet... check back later.");
+    problem = 8;
 }

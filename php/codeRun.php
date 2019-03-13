@@ -3,7 +3,7 @@
     // Note: (had to use JS encodeURIcomponent to get it to pass the string correctly)
     $sCode = $_REQUEST["code"];
     $uName = $_REQUEST["username"];
-    
+    $problem = $_REQUEST["problem"];    
 
     // hard coded username for development without user system built yet
     $userName = $uName; // eventually needs to be $uName
@@ -28,8 +28,20 @@
     // to a variable and then create a file and
     // fill it with the contents.
     $textToWrite = $sCode;
-    fwrite($sourceFile, $textToWrite);
     
+    // TODO 
+    // Need to do some magic here with stitching
+    // multiple files together after writing user
+    // code to the source file.
+
+    $part1 = file_get_contents("./file1.cpp");
+    $part2 = $textToWrite;
+    $part3 = file_get_contents("./file2.cpp");
+
+    fwrite($sourceFile, $part1);
+    fwrite($sourceFile, $part2);
+    fwrite($sourceFile, $part3);
+
     // Use a system call to call the g++ compiler
     // with a specific name for the outputted 
     // compiled file on success or the errors 

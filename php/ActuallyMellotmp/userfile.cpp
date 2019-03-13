@@ -1,10 +1,6 @@
 #include <iostream>
 using namespace std;
 
-int main(){
-	/* Enter Code Here */
-	while(true){
-		
-	}
-return 0;
+int main(){	/* Enter Code Here */
+	cout<<"Hello world!\n";return 0;
 }
