@@ -1,0 +1,4 @@
+xmlhttp request to kill infinite process after timeout.
+
+php session for storing variables like compile count, username, 
+and current problem for php solution checking 

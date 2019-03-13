@@ -1,5 +1,6 @@
 <?php
-    
+session_start();
+
 $user = 'root';
 $pass = '';
 $db = 'usersdb';
@@ -7,7 +8,7 @@ $conn = new mysqli('localhost', $user, $pass, $db) or die("Unable to connect");
 
 $userName = $_REQUEST["username"];
 $password = $_REQUEST["password"];
-$firstName = $_REQUEST["password"];
+$firstName = $_REQUEST["firstName"];
 $lastName = $_REQUEST["lastName"];
 $email = $_REQUEST["email"];
 

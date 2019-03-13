@@ -3,79 +3,43 @@ window.addEventListener("resize", function(){
     this.editor.layout();
 });
 
-function debugCall(codeValue){    
+function sendCode(code,user){
     // Reset debug window
     document.getElementById("debug").innerHTML = "";
 
+    // Start timer for response
+    var timeout = setTimeout(kill,3000);
+
+    // Send code
+    debugCall(code,user,timeout);
+}
+
+function kill(){
+    killProgram(user);
+}
+
+function debugCall(codeValue,user,timeout){    
     // Use AJAX to send source code to server as a string
     var xhttp = new XMLHttpRequest()
     xhttp.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200){
+        if (this.readyState == 4 && this.status == 200){   
             document.getElementById("debug").innerHTML = this.responseText;
+            clearTimeout(timeout);
         }
     }
-    xhttp.open("POST", "../php/codeRun.php?code="+ encodeURIComponent(codeValue), true);
+    xhttp.open("POST", "../php/codeRun.php?code="+encodeURIComponent(codeValue)+"&username="+encodeURIComponent(user), true);
     xhttp.send();
 }
 
-function updateProblem1(){
+function killProgram(user){
+    // Use AJAX to send kill request to a PHP script after timeout
     var xhttp = new XMLHttpRequest()
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            var parsedProblem = JSON.parse(this.responseText);
-            document.getElementById("title").innerHTML = parsedProblem.title;
-            document.getElementById("objective").innerHTML = parsedProblem.objective;
-            document.getElementById("task").innerHTML = parsedProblem.task;
-            document.getElementById("inputFormat").innerHTML = parsedProblem.inputFormat;
-            document.getElementById("constraints").innerHTML = parsedProblem.constraints;
-            document.getElementById("outputFormat").innerHTML = parsedProblem.outputFormat;
-            document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
-            document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
+            // alert("Execution stopped: Timeout occured");
+            document.getElementById("debug").innerHTML = "Execution stopped: Timeout occured";
         }
     }
-    xhttp.open("POST", "../problemFiles/problem1.txt", true);
+    xhttp.open("POST", "../php/killProgram.php?username="+ encodeURIComponent(user), true);
     xhttp.send();
-}
-
-function updateProblem2(){
-    var xhttp = new XMLHttpRequest()
-    xhttp.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200){
-            var parsedProblem = JSON.parse(this.responseText);
-            document.getElementById("title").innerHTML = parsedProblem.title;
-            document.getElementById("objective").innerHTML = parsedProblem.objective;
-            document.getElementById("task").innerHTML = parsedProblem.task;
-            document.getElementById("inputFormat").innerHTML = parsedProblem.inputFormat;
-            document.getElementById("constraints").innerHTML = parsedProblem.constraints;
-            document.getElementById("outputFormat").innerHTML = parsedProblem.outputFormat;
-            document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
-            document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
-        }
-    }
-    xhttp.open("POST", "../problemFiles/problem2.txt", true);
-    xhttp.send();
-}
-
-function updateProblem3(){
-    alert("Problem not made yet... check back later.");
-}
-
-function updateProblem4(){
-    alert("Problem not made yet... check back later.");
-}
-
-function updateProblem5(){
-    alert("Problem not made yet... check back later.");
-}
-
-function updateProblem6(){
-    alert("Problem not made yet... check back later.");
-}
-
-function updateProblem7(){
-    alert("Problem not made yet... check back later.");
-}
-
-function updateProblem8(){
-    alert("Problem not made yet... check back later.");
 }

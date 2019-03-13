@@ -6,8 +6,10 @@ var form = document.getElementById("myform");
 // displays the form for creating a login
 function newUser(){
 
+    // Clears the old form
     clearFields();
 
+    // Building of new fields
     var unField = document.createElement("input");
     unField.setAttribute("type", "text");
     unField.setAttribute("name", "username");
@@ -15,7 +17,7 @@ function newUser(){
     unField.setAttribute("id", "uName");
 
     var pwField = document.createElement("input");
-    pwField.setAttribute("type", "text");
+    pwField.setAttribute("type", "password");
     pwField.setAttribute("name", "password");
     pwField.setAttribute("placeholder", "Password");
     pwField.setAttribute("id", "pass");
@@ -38,6 +40,7 @@ function newUser(){
     emailField.setAttribute("placeholder", "Email");
     emailField.setAttribute("id","email");
     
+    // Builds the new form
     form.append(unField);
     form.append(document.createElement("br"));
     form.append(document.createElement("br"));
@@ -52,14 +55,20 @@ function newUser(){
     form.append(document.createElement("br"));
     form.append(emailField);
 
-    newUserButtons();
+    // Button functionality change
+    b1.setAttribute("onclick", "submit()");
+    b1.innerText = "Submit";
+    b2.setAttribute("onclick", "login()");
+    b2.innerText = "Cancel";
 }
 
 // displays the login form
-function loginButtons(){
+function login(){
 
+    // Clears the old form
     clearFields();
 
+    // Building of new fields
     var unField = document.createElement("input");
     unField.setAttribute("type", "text");
     unField.setAttribute("name", "username");
@@ -67,29 +76,22 @@ function loginButtons(){
     unField.setAttribute("id","uName");
 
     var pwField = document.createElement("input");
-    pwField.setAttribute("type", "text");
+    pwField.setAttribute("type", "password");
     pwField.setAttribute("name", "password");
     pwField.setAttribute("placeholder", "Password");
     pwField.setAttribute("id","pass");
 
+    // Builds the new form
     form.append(unField);
     form.append(document.createElement("br"));
     form.append(document.createElement("br"));
     form.append(pwField);
 
+    // Button functionality change
     b1.setAttribute("onclick", "attemptLogin()");
     b1.innerText = "Login"
-
     b2.setAttribute("onclick", "newUser()");
     b2.innerText = "New User";
-}
-
-function newUserButtons(){
-    b1.setAttribute("onclick", "submit()");
-    b1.innerText = "Submit";
-
-    b2.setAttribute("onclick", "loginButtons()");
-    b2.innerText = "Cancel";
 }
 
 // checks for user in database
@@ -97,18 +99,7 @@ function attemptLogin(){
     var user = document.getElementById("uName").value;
     var pass = document.getElementById("pass").value;
 
-    checkUser(user, pass);
-
-    // check if user is in the database
-    var userPresent = true; // php check here?
-
-    // if yes, send to menu
-    if (userPresent){
-        location.href = 'menu.php';
-    }
-    else {
-
-    }
+    validate(user, pass);
 }
 
 // creates user in database
@@ -129,53 +120,44 @@ function checkAvail(user,pass,fName,lName,email){
     var xhttp = new XMLHttpRequest()
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            // change buttons if success, otherwise report issue.
-            if(this.responseText == "True"){
-                form.innerHTML = "User created successfully.<br><br>";
-                loginButtons();
+            if(this.responseText == "True"){ 
+                alert("User created successfully.");
+                login();
             }
             else if(this.responseText == "1"){
-                form.innerHTML = "Username already taken, choose another.<br><br>";
-                
-                var unField = document.createElement("input");
-                unField.setAttribute("type", "text");
-                unField.setAttribute("name", "username");
-                unField.setAttribute("placeholder", "Username");
-                unField.setAttribute("id","uName");
-
-                var pwField = document.createElement("input");
-                pwField.setAttribute("type", "text");
-                pwField.setAttribute("name", "password");
-                pwField.setAttribute("placeholder", "Password");
-                pwField.setAttribute("id","pass");
-
-                form.append(unField);
-                form.append(document.createElement("br"));
-                form.append(document.createElement("br"));
-                form.append(pwField);
-
                 newUser();
+                document.getElementById("errors").innerHTML = "Username already taken, choose another.";
             }
         }
     }
-    xhttp.open("POST", "../php/connect.php?username="+encodeURIComponent(user)+"&password="+encodeURIComponent(pass)+"&firstName="+encodeURIComponent(fName)+"&lastName="+encodeURIComponent(lName)+"&email="+encodeURIComponent(email), true);
+    xhttp.open("POST", "../php/createUser.php?username="+encodeURIComponent(user)+"&password="+encodeURIComponent(pass)+"&firstName="+encodeURIComponent(fName)+"&lastName="+encodeURIComponent(lName)+"&email="+encodeURIComponent(email), true);
     xhttp.send();
 }
 
-function checkUser(user, password){    
+function validate(user, password){    
 
     // Use AJAX to send source code to server as a string
     var xhttp = new XMLHttpRequest()
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
-            form.innerHTML = this.responseText;
+
+            if(this.responseText == "True"){
+                // alert(this.responseText);
+                location.href = 'menu.php';
+            }
+            else {
+                document.getElementById("errors").innerHTML = "Incorrect Username or Password. Please try again.";
+                // alert("Incorrect Username or Password. Please try again.");
+                // alert(this.responseText);
+            }
         }
     }
-    xhttp.open("POST", "../php/connect.php?username="+encodeURIComponent(user)+"&password="+encodeURIComponent(password), true);
+    xhttp.open("POST", "../php/validate.php?username="+encodeURIComponent(user)+"&password="+encodeURIComponent(password), true);
     xhttp.send();
 }
 
 function clearFields(){
+    document.getElementById("errors").innerHTML = "";
     while(form.firstChild){
         form.removeChild(form.firstChild);
     }   

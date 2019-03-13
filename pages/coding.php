@@ -1,12 +1,24 @@
+<?php
+// Start the session
+session_start();
+ $user = $_SESSION["user"];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
+    <script type="text/javascript">
+        // Sets the username variable with php session variable
+        var user = "<?php echo $user; ?>";
+    </script>
+
     <title>Autograder</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" data-name="vs/editor/editor.main" href="../node_modules/monaco-editor/min/vs/editor/editor.main.css">
+
 </head>
 <header>
     <!-- This is the navigation bar to navigate the site. Would like to update to
@@ -102,7 +114,7 @@
             <textarea readonly="readonly" class="codingArea" id="debug" rows="20" cols="30" placeholder="Debugging statements appear here"></textarea>
         </div>
         <div class="leftCol">
-            <button id="runCode" type="button" onclick="debugCall(editor.getValue())">Run Your Code</button>
+            <button id="runCode" type="button" onclick="sendCode(editor.getValue(),user)">Run Your Code</button>
         </div>
 
         <!-- This is the various things needed for initializing the Monaco editor -->
@@ -124,13 +136,14 @@
                     '}'
                 ].join('\n'),
                 language: 'cpp',
-                fontSize: 14
+                fontSize: 16
             });
             monaco.editor.setTheme('vs-dark');
         </script>
 </body>
 <footer>
-
+    <input type="hidden" name="mysession" id="mysession">   
 </footer>
 <script src="../js/codeHandler.js" charset="utf-8"></script>
+<script src="../js/problemUpdater.js" charset="utf-8"></script>
 </html>
