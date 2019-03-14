@@ -3,11 +3,13 @@
 session_start();
  $user = $_SESSION["user"];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
+    <!-- A simple initial script to set some global variables -->
     <script type="text/javascript">
         // Sets the username variable with php session variable
         var user = "<?php echo $user; ?>";
@@ -57,67 +59,88 @@ session_start();
     </nav>
 </header>
 <body>
+
+    <div class="row">
         <!-- This is the start of the data fields for problem instructions 
-             which is dynamically filled through AJAX calls to the server -->
-        <div class="instructions" name="instructions">
-            <h1 id="title">Title of Problem</h1>
-            <section>
-                <h2>Objective:</h2>
-                <p id="objective">
-                    Some text describing the learning objective.
-                </p> 
-            </section>
-            <section>
-                <h2>Task:</h2>
-                <p id="task">
-                    Some text describing the task.
-                </p>
-            </section>
-            <section>
-                <h2>Input Format:</h2>
-                <p id="inputFormat">
-                    Some text describing the input format.
-                </p>
-            </section>
-            <section>
-                <h2>Constraints:</h2>
-                <p id="constraints">
-                    Some text describing the constraints.
-                </p>
-            </section>
-            <section>
-                <h2>Output Format:</h2>
-                <p id="outputFormat">
-                    Some text describing the output format.
-                </p>
-            </section>
-            <section>
-                <h2>Sample Input:</h2>
-                <p id="sampleInput">
-                    A sample input.
-                </p>
-            </section>
-            <section>
-                <h2>Sample Output</h2>
-                <p id="sampleOutput">
-                    A sample output.
-                </p>
-            </section>
+        which is dynamically filled through AJAX calls to the server -->
+        <div class="columnLeft2" style="padding: 1%;">
+            <div class="row">
+                <div class="column" style="padding: 1%;">
+                    <h1 id="title"></h1>
+                    <section>
+                        <h2>Objective:</h2>
+                        <p id="objective"></p> 
+                    </section>
+                    <section>
+                        <h2>Task:</h2>
+                        <p id="task"></p>
+                    </section>
+                    <section>
+                        <h2>Input Format:</h2>
+                        <p id="inputFormat"></p>
+                    </section>
+                </div>
+                <div class="column" style="padding: 1%;">
+                    <section>
+                        <h2>Constraints:</h2>
+                        <p id="constraints"></p>
+                    </section>
+                    <section>
+                        <h2>Output Format:</h2>
+                        <p id="outputFormat"></p>
+                    </section>
+                    <section>
+                        <h2>Sample Input:</h2>
+                        <p id="sampleInput"></p>
+                    </section>
+                    <section>
+                        <h2>Sample Output</h2>
+                        <p id="sampleOutput"></p>
+                    </section>
+                </div>
+            </div>
+            
         </div>
 
+        <!-- This is the start of the information fields for the current problem 
+             which is dynamically filled by javascript functions giving the user
+             an idea of his progress and performance -->
+        <div class="columnRight1" style="padding: 1%;">
+            <!-- Timer -->
+            <h1 id="timer">Time:</h1>
+            <section>
+                <h2 id="time">00:00</h2> 
+            </section>
+            <!-- Compile Counter -->
+            <h1 id="compileCounter">Number of compilations:</h1>
+            <section>
+                <h2 id="compiles"></h2>
+            </section>
+            <!-- Error Counter -->
+            <h1 id="errorCounter">Number of errors:</h1>
+            <section>
+                <h2 id="errors"></h2>
+            </section>
+        </div>
+    </div>
+    <!-- Row containing the editor and debug panel -->
+    <div class="row">
         <!-- This is where the Monaco editor will be rendered -->
-        <div class="leftCol">
+        <div class="column">
             <div id="container"></div>
         </div>
         <!-- This is the debug text area which houses the PHP responses
              from compilation -->
-        <div class="rightCol">
+        <div class="column">
             <textarea readonly="readonly" class="codingArea" id="debug" rows="20" cols="30" placeholder="Debugging statements appear here"></textarea>
         </div>
-        <div class="leftCol">
-            <button id="runCode" type="button" onclick="sendCode(editor.getValue(),problem,user)">Run Your Code</button>
+    </div>
+    <!-- Row containing the button that sends code to server -->
+    <div class="row">
+        <div class="column">
+            <button id="runCode" type="button" onclick="sendCode(editor.getValue(),problem,user), incCounter()">Run Your Code</button>
         </div>
-
+    </div>
         <!-- This is the various things needed for initializing the Monaco editor -->
         <script>var require = { paths: { 'vs': '../node_modules/monaco-editor/min/vs' } };</script>
         <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
@@ -127,14 +150,9 @@ session_start();
         <script>
             var editor = monaco.editor.create(document.getElementById('container'), {
                 value: [
-                    '#include <iostream>',
-                    'using namespace std;',
-                    '',
-                    'int main(){',
-                    '\t/* Enter Code Here */',
-                    '\tcout<<"Hello world!\\n";',
-                    'return 0;',
-                    '}'
+                    '/* Enter Code Here */',
+                    'cout<<"Hello world!\\n";',
+                    
                 ].join('\n'),
                 language: 'cpp',
                 fontSize: 16
@@ -147,4 +165,6 @@ session_start();
 </footer>
 <script src="../js/codeHandler.js" charset="utf-8"></script>
 <script src="../js/problemUpdater.js" charset="utf-8" onload="updateProblem1()"></script>
+<script src="../js/infoPanels.js" charset="utf-8" onload="updateDisplay()"></script>
+
 </html>
