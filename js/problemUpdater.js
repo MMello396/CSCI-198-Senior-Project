@@ -1,4 +1,4 @@
-function updateProblem1(){
+function updateProblem1(textEditor){
     var xhttp = new XMLHttpRequest()
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
@@ -11,6 +11,7 @@ function updateProblem1(){
             document.getElementById("outputFormat").innerHTML = parsedProblem.outputFormat;
             document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
             document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
+            textEditor.setValue("/* Enter Code Here*/");
             problem = 1;
         }
     }
@@ -18,7 +19,7 @@ function updateProblem1(){
     xhttp.send();
 }
 
-function updateProblem2(){
+function updateProblem2(textEditor){
     var xhttp = new XMLHttpRequest()
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
@@ -31,6 +32,7 @@ function updateProblem2(){
             document.getElementById("outputFormat").innerHTML = parsedProblem.outputFormat;
             document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
             document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
+            textEditor.setValue('/* Enter Code Here*/');
             problem = 2;
         }
     }

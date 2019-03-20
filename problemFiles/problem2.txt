@@ -6,5 +6,6 @@
     "constraints": "Must work with any two inputs.",
     "outputFormat": "The resulting number of the input values.",
     "sampleInput": "2 4",
-    "sampleOutput": "8"
+    "sampleOutput": "8",
+    "startingCode":  "/* Enter Code Here */"
 }

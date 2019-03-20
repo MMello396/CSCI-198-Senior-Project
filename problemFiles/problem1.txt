@@ -6,5 +6,6 @@
     "constraints": "Not really any to speak of.",
     "outputFormat": "A string of text that looks a lot like \"Hello World!\"",
     "sampleInput": "N/A",
-    "sampleOutput": "Hello world!"
+    "sampleOutput": "Hello world!",
+    "startingCode":  ""
 }
