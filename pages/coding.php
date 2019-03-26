@@ -13,7 +13,6 @@ session_start();
     <script type="text/javascript">
         // Sets the username variable with php session variable
         var user = "<?php echo $user; ?>";
-        var problem = 1;
     </script>
 
     <title>Autograder</title>
@@ -32,11 +31,10 @@ session_start();
                 <a href="menu.php"><button id="menu" type="button">Menu</button></a>
             </li>
             <li>
-                <button id="p1" type="button" onclick="updateProblem1(editor)">Problem 1</button>
+                <button id="p1" type="button" onclick="updateProblem1()">Problem 1</button>
             </li>
             <li>
-                <button id="p2" type="button" onclick="updateProblem2(editor
-                )">Problem 2</button>
+                <button id="p2" type="button" onclick="updateProblem2()">Problem 2</button>
             </li>
             <li>
                 <button id="p3" type="button" onclick="updateProblem3()">Problem 3</button>
@@ -139,7 +137,7 @@ session_start();
     <!-- Row containing the button that sends code to server -->
     <div class="row">
         <div class="column">
-            <button id="runCode" type="button" onclick="sendCode(textEditor.getValue(),problem,user)">Run Your Code</button>
+            <button id="runCode" type="button" onclick="sendCode(editor.getValue(),problem,user)">Run Your Code</button>
         </div>
     </div>
         <!-- This is the various things needed for initializing the Monaco editor -->
@@ -158,8 +156,6 @@ session_start();
                 fontSize: 16
             });
             monaco.editor.setTheme('vs-dark');
-
-            var textEditor = editor;
         </script>
 </body>
 <footer>
