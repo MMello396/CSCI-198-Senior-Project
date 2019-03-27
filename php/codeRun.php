@@ -25,14 +25,12 @@
     $sourceFile = fopen($userFile, "w") or die("Unable to open file!");
     
     // Write the source code passed from server
-    // to a variable and then create a file and
-    // fill it with the contents.
+    // to a variable
     $textToWrite = $sCode;
     
-    // TODO 
-    // Need to do some magic here with stitching
-    // multiple files together after writing user
-    // code to the source file.
+    // TODO: depending on problem being worked
+    // choose the right file to append to user
+    // code provided in "textToWrite"
 
     $part1 = file_get_contents("./file1.cpp");
     $part2 = $textToWrite;
