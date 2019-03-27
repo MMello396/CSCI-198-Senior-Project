@@ -23,8 +23,12 @@ window.onload = function () {
     startTimer(display);
 };
 
-function incCounter(){
+function incCompileCounter(){
     compileCount += 1;
+    updateDisplay();
+}
+
+function updateErrorCounter(){
     updateDisplay();
 }
 

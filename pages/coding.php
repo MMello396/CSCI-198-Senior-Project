@@ -13,7 +13,6 @@ session_start();
     <script type="text/javascript">
         // Sets the username variable with php session variable
         var user = "<?php echo $user; ?>";
-        var problem = 1;
     </script>
 
     <title>Autograder</title>
@@ -138,7 +137,7 @@ session_start();
     <!-- Row containing the button that sends code to server -->
     <div class="row">
         <div class="column">
-            <button id="runCode" type="button" onclick="sendCode(editor.getValue(),problem,user), incCounter()">Run Your Code</button>
+            <button id="runCode" type="button" onclick="sendCode(editor.getValue(),problem,user)">Run Your Code</button>
         </div>
     </div>
         <!-- This is the various things needed for initializing the Monaco editor -->
@@ -151,8 +150,7 @@ session_start();
             var editor = monaco.editor.create(document.getElementById('container'), {
                 value: [
                     '/* Enter Code Here */',
-                    'cout<<"Hello world!\\n";',
-                    
+                    'cout<<"Hello world!\\n";' ,
                 ].join('\n'),
                 language: 'cpp',
                 fontSize: 16

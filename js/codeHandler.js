@@ -22,10 +22,24 @@ function debugCall(codeValue,problem,user,timeout){
     // Use AJAX to send source code to server as a string
     var xhttp = new XMLHttpRequest()
     xhttp.onreadystatechange = function(){
+        // On ready state change 4 the AJAX request will update the debug field with
+        // the returned message and clear the timeout timer.
         if (this.readyState == 4 && this.status == 200){   
-            document.getElementById("debug").innerHTML = this.responseText;
+            var msg = this.responseText;
+            document.getElementById("debug").innerText = msg;
             clearTimeout(timeout);
+            
+            // Various statistics will be gathered here
+            // Increment compilation counter
+            incCompileCounter();
+
+            // If errors are present in the response
+            var errors = (msg.match(/error/g) || []).length;
+            errorCount += errors;
+            updateErrorCounter();
         }
+
+       
     }
     xhttp.open("POST", "../php/codeRun.php?code="+encodeURIComponent(codeValue)+"&problem="+encodeURIComponent(problem)+"&username="+encodeURIComponent(user), true);
     xhttp.send();
