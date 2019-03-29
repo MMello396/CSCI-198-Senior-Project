@@ -14,6 +14,11 @@ public:
 		nassigns = 0;
 	};
 	
+	void GetStats(){
+		ncomparisons;
+		nassigns = 0;
+	};
+
 	int operator=(int a)
 	{
 		nassigns++;
@@ -63,11 +68,25 @@ public:
 		return c1.x < c2.x;
 	};
 
+	friend bool operator<=(MyNumber &c1, MyNumber &c2)
+	{
+		c1.ncomparisons++;
+		c2.ncomparisons++;
+		return c1.x < c2.x;
+	};
+
 	friend bool operator>(MyNumber &c1, MyNumber &c2)
 	{
 		c1.ncomparisons++;
 		c2.ncomparisons++;
 		return c1.x > c2.x;
+	};
+	
+	friend bool operator>=(MyNumber &c1, MyNumber &c2)
+	{
+		c1.ncomparisons++;
+		c2.ncomparisons++;
+		return c1.x >= c2.x;
 	};
 
 	friend bool operator==(MyNumber &c1, MyNumber &c2)
@@ -77,12 +96,6 @@ public:
 		return c1.x == c2.x;
 	}
 
-	friend bool operator<=(MyNumber &c1, MyNumber &c2)
-	{
-		c1.ncomparisons++;
-		c2.ncomparisons++;
-		return c1.x <= c2.x;
-	}
 
 	int value()
 	{

@@ -355,6 +355,19 @@ void MyArray::DisplayStats(){
 		a[i].DisplayInfo();
 }
 
+void MyArray::TotalComps(){
+	
+}
+
+void MyArray::TotalAssigns(){
+
+}
+
+// void MyArray::Copy(MyArray* b){
+// 	for (int i = 0; i < n; i++)
+// 		a[i] = b[i];
+// }
+
 // Sorting Algorithm
 bool MyArray::IsSorted() {
 	bool output = true;
@@ -419,7 +432,7 @@ void MyArray::SelectionSort() {
 		}
 		SwapIndex(i, min);
 	}
-	DisplayStep(__func__);
+	// DisplayStep(__func__);
 }
 
 void MyArray::InsertionSort() {
@@ -439,7 +452,7 @@ void MyArray::InsertionSort() {
 			j--;
 		}
 	}
-	DisplayStep(__func__);
+	// DisplayStep(__func__);
 }
 
 void MyArray::BubbleSort() {
@@ -453,7 +466,7 @@ void MyArray::BubbleSort() {
 			}
 		}
 	}
-	DisplayStep(__func__);
+	// DisplayStep(__func__);
 }
 
 void MyArray::BubbleOptSort() {
@@ -472,7 +485,7 @@ void MyArray::BubbleOptSort() {
 		}
 		i++;
 	}
-	DisplayStep(__func__);
+	// DisplayStep(__func__);
 }
 
 void merge(MyNumber* a, int start, int mid, int end) {
@@ -530,7 +543,7 @@ void mergesort(MyNumber* a, int start, int end) {
 void MyArray::MergeSort() {
 	step = 0;
 	mergesort(a, 0, n - 1);
-	DisplayStep(__func__);
+	// DisplayStep(__func__);
 }
 
 // Hoare partition
@@ -569,7 +582,7 @@ void quicksort(MyNumber* a, int start, int end) {
 void MyArray::QuickSort() {
 	step = 0;
 	quicksort(a, 0, n - 1);
-	DisplayStep(__func__);
+	// DisplayStep(__func__);
 }
 
 /////////////////////////////////////////////////

@@ -131,7 +131,7 @@ session_start();
         <!-- This is the debug text area which houses the PHP responses
              from compilation -->
         <div class="column">
-            <textarea readonly="readonly" class="codingArea" id="debug" rows="20" cols="30" placeholder="Debugging statements appear here"></textarea>
+        <div class="codingArea" id="debug">Debug Area</div>
         </div>
     </div>
     <!-- Row containing the button that sends code to server -->

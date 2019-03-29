@@ -40,12 +40,28 @@ public:
 	MyNumber& operator[] (unsigned i);
 	MyArray* operator+(const MyArray* a);
 
+	// Copies the two arrays of MyNumbers
+	int operator=(MyArray* b){
+		for (int i = 0; i < n; i++)
+		a[i] = b->a[i];
+	};
+
+	// Checks to see if two MyArrays are equal
+	friend bool operator==(MyArray &a, MyArray &b){
+		int n = a.GetSize();
+		for (int i = 0; i < n; i++)
+		a[i] == b[i];
+	}
+
+
 	// tuple<int, int, int> FindMaxCrossingSubarray(int low, int mid, int high);
 	// tuple<int, int, int> FindMaximumSubarray(int low, int high);
 
 	// Stats
 	void Reset();
 	void DisplayStats();
+	void TotalComps();
+	void TotalAssigns();
 
 	// Sorting functions
 	bool IsSorted();
@@ -67,6 +83,11 @@ public:
 
 	// User defined sorting algorithms
 	void MySelectionSort();
+	void MyInsertionSort();
+	void MyBubbleSort();
+	void MyBubbleOptSort();
+	void MyMergeSort();
+	void MyQuickSort();
 
 private:
 	MyNumber* a; // array

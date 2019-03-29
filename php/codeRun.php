@@ -7,7 +7,6 @@
 
     // Dynamic setting of file paths and names for users
     $userName = $uName; 
-    $userFile = "userfile.cpp";
     $fileName = "{$userName}";
     $includeDir = "../../files";
 
@@ -23,7 +22,7 @@
     // variable to the file, then closes the
     // file stream.
     chdir("{$userName}tmp");
-    $sourceFile = fopen($userFile, "w") or die("Unable to open file!");
+    $sourceFile = fopen("{$fileName}.cpp", "w") or die("Unable to open file!");
     
     // Write the source code passed from server
     // to a variable
@@ -43,13 +42,18 @@
     // with a specific name for the outputted 
     // compiled file on success or the errors 
     // output and compile failure.
-    $compileCall = "g++ -o {$fileName} {$userFile} 2>&1";
-        
+    $compileCall = "g++ -I {$includeDir} -c {$fileName}.cpp {$includeDir}/MyArray.cpp 2>&1";
+    $output = system($compileCall, $result);
+
+    // Links the object files together so the complete
+    // executable has all of the necessary files.
     // Compiles the program and returns the results
     // to the variable $output. The current returned
     // result is 0, and an executible is created
+    $compileCall = "g++ -o {$fileName} {$fileName}.o MyArray.o 2>&1";
     $output = system($compileCall, $result);
 
+    // Runs the executable
     $command = "{$fileName}.exe";
     
     // Outputs the errors of compilation to the
@@ -59,13 +63,15 @@
       echo $output;
     }
     else{
-      exec($command, $result);
+      exec($command, $message);
+      
+      foreach($message as $line){	
+        echo $line;	
+        echo "\n";	
+      }
     }
 
-    foreach($result as $line){	
-      echo $line;	
-      echo "\n";	
-    }
+    
 
     // close file after compilation is complete
     // and file output is sent back to client
