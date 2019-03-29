@@ -14,9 +14,13 @@ public:
 		nassigns = 0;
 	};
 	
-	void GetStats(){
-		ncomparisons;
+	int GetComps(){
+		return ncomparisons;
 		nassigns = 0;
+	};
+
+	int GetAssigns(){
+		return nassigns;
 	};
 
 	int operator=(int a)

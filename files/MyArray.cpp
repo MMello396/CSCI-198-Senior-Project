@@ -356,11 +356,15 @@ void MyArray::DisplayStats(){
 }
 
 void MyArray::TotalComps(){
-	
+	int comps = 0;
+	for (int i = 0; i < n; i++)
+		comps += a[i].GetComps();
 }
 
 void MyArray::TotalAssigns(){
-
+	int assigns = 0;
+	for (int i = 0; i < n; i++)
+		assigns += a[i].GetAssigns();
 }
 
 // void MyArray::Copy(MyArray* b){
