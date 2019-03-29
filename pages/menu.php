@@ -13,14 +13,14 @@ session_start();
     <nav>
         <ul style="list-style-type: none;">
             <li>
-                <a href="coding.php"><button id="b1" type="button">Data Structure 1</button></a> 
+                <a href="coding.php"><button id="b1" type="button">Array Sorting</button></a> 
             </li>
             <li>
-                <button id="b1" type="button" onclick="alert('Hello World')">Data Structure 2</button>
+                <button id="b1" type="button" onclick="alert('Problem Set Unavailable')">Doubly-Linked Lists</button>
             </li>
-            <li>
-                <button id="b1" type="button" onclick="alert('Hello World')">Data Structure 3</button>
-            </li>
+            <!-- <li>
+                <button id="b1" type="button" onclick="alert('Problem Set Unavailable')">Data Structure 3</button>
+            </li> -->
             <li>
                 <a href="login.php"><button id="b1" type="button">log out</button></a> 
             </li>

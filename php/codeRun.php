@@ -5,10 +5,11 @@
     $uName = $_REQUEST["username"];
     $problem = $_REQUEST["problem"];    
 
-    // hard coded username for development without user system built yet
-    $userName = $uName; // eventually needs to be $uName
+    // Dynamic setting of file paths and names for users
+    $userName = $uName; 
     $userFile = "userfile.cpp";
     $fileName = "{$userName}";
+    $includeDir = "../../files";
 
     // Sets the path for the files to be grabbed by this
     // script for current user. Needs to determine if path
@@ -32,13 +33,11 @@
     // choose the right file to append to user
     // code provided in "textToWrite"
 
-    $part1 = file_get_contents("./file1.cpp");
+    $part1 = file_get_contents("{$includeDir}/main.cpp");
     $part2 = $textToWrite;
-    $part3 = file_get_contents("./file2.cpp");
 
     fwrite($sourceFile, $part1);
     fwrite($sourceFile, $part2);
-    fwrite($sourceFile, $part3);
 
     // Use a system call to call the g++ compiler
     // with a specific name for the outputted 
