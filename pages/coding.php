@@ -149,8 +149,7 @@ session_start();
         <script>
             var editor = monaco.editor.create(document.getElementById('container'), {
                 value: [
-                    '/* Enter Code Here */',
-                    'cout<<"Hello world!\\n";' ,
+                
                 ].join('\n'),
                 language: 'cpp',
                 fontSize: 16

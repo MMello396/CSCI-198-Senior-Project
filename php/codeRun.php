@@ -71,8 +71,6 @@
       }
     }
 
-    
-
     // close file after compilation is complete
     // and file output is sent back to client
     fclose($sourceFile);

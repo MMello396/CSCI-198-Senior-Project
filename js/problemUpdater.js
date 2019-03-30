@@ -1,6 +1,16 @@
 var textEditor = editor;
 var problem;
 
+// function save() {
+//     // get the value of the data
+//     var value = window.editor.getValue()
+//     saveValue(value);
+// }
+
+// function saveValue(){
+
+// }
+
 function updateProblem1(){
     if(problem != 1){
         var xhttp = new XMLHttpRequest()
@@ -15,7 +25,7 @@ function updateProblem1(){
                 document.getElementById("outputFormat").innerHTML = parsedProblem.outputFormat;
                 document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
                 document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
-                textEditor.setValue("/* Enter Code Here*/");
+                textEditor.setValue("/* Enter Code Here */\ncout << \"Hello World\" << endl;");
                 problem = 1;
             }
         }
