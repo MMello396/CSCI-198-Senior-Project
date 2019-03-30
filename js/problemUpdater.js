@@ -25,7 +25,7 @@ function updateProblem1(){
                 document.getElementById("outputFormat").innerHTML = parsedProblem.outputFormat;
                 document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
                 document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
-                textEditor.setValue("/* Enter Code Here */\ncout << \"Hello World\" << endl;");
+                textEditor.setValue("void MyArray::MySelectionSort()\{\n\t/* ENTER CODE HERE */\n\n}");
                 problem = 1;
             }
         }
@@ -49,7 +49,7 @@ function updateProblem2(){
                 document.getElementById("outputFormat").innerHTML = parsedProblem.outputFormat;
                 document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
                 document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
-                textEditor.setValue('/* Enter Code Here*/');
+                textEditor.setValue("void MyArray::MySelectionSort()\{\n\t/* ENTER CODE HERE */\n\n}");
                 problem = 2;
             }
         }

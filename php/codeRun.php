@@ -36,6 +36,7 @@
     $part2 = $textToWrite;
 
     fwrite($sourceFile, $part1);
+    fwrite($sourceFile, "\n");
     fwrite($sourceFile, $part2);
 
     // Use a system call to call the g++ compiler
@@ -54,7 +55,7 @@
     $output = system($compileCall, $result);
 
     // Runs the executable
-    $command = "{$fileName}.exe";
+    $command = "{$fileName}.exe {$problem}";
     
     // Outputs the errors of compilation to the
     // debug screen if compilation fails. Returns

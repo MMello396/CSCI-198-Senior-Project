@@ -40,6 +40,9 @@ public:
 	MyNumber& operator[] (unsigned i);
 	MyArray* operator+(const MyArray* a);
 
+
+	// These two overloads are not working...
+
 	// Copies the two arrays of MyNumbers
 	int operator=(MyArray* b){
 		for (int i = 0; i < n; i++)
@@ -60,8 +63,10 @@ public:
 	// Stats
 	void Reset();
 	void DisplayStats();
-	void TotalComps();
-	void TotalAssigns();
+	int TotalComps();
+	int TotalAssigns();
+	void Copy(MyArray* b);
+	bool CheckSame(MyArray* b);
 
 	// Sorting functions
 	bool IsSorted();
