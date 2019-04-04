@@ -4,7 +4,7 @@ var compileDisplay = document.getElementById('compiles');
 var errorDisplay = document.getElementById('errors');
 
 function startTimer(display) {
-    var timer = 0, minutes, seconds;
+    var timer = -2, minutes, seconds;
     setInterval(function () {
         timer++;
         minutes = parseInt(timer / 60, 10)
@@ -19,7 +19,7 @@ function startTimer(display) {
 }
 
 window.onload = function () {
-        display = document.getElementById("time");
+    display = document.getElementById("time");
     startTimer(display);
 };
 
