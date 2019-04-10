@@ -17,7 +17,6 @@ bool testCase1SS();
 bool testCase2SS();
 bool testCase3SS();
 bool testCase4SS();
-bool testCase5SS();
 
 // Doubly-Linked List Insertion test functions
 bool testCase1DLLI();
@@ -65,9 +64,6 @@ void SSTest(){
 
      bool pass4 = testCase4SS();
      cout << "Test 4: " << passEval(pass4) << endl;
-
-     bool pass5 = testCase5SS();
-     cout << "Test 5: " << passEval(pass5) << endl;
 }
 
 // Doubly-Linked List Insertion test functions
@@ -151,27 +147,8 @@ bool testCase2SS(){
      return correct;
 }
 
-// For edge case of 0 elements
-bool testCase3SS(){
-     bool correct = false;
-     MyArray* systemArr = new MyArray(0);
-     MyArray* userArr = new MyArray(0);
-     
-     systemArr->InitRandom(50);
-     userArr->Copy(systemArr);
-     userArr->Reset();
-     systemArr->Reset();
-
-     systemArr->SelectionSort();
-     userArr->MySelectionSort();
-
-     if(userArr->IsSorted() && userArr->TotalAssigns() == systemArr->TotalAssigns()
-      && userArr->TotalComps() == systemArr->TotalComps()) correct = true;
-     return correct;
-}
-
 // For edge case of n elements pre-sorted ascending
-bool testCase4SS(){
+bool testCase3SS(){
      bool correct = false;
      MyArray* systemArr = new MyArray(5);
      MyArray* userArr = new MyArray(5);
@@ -189,8 +166,8 @@ bool testCase4SS(){
      return correct;
 }
 
-// For case of n elements pre-sorted descending
-bool testCase5SS(){
+// For edge case of n elements pre-sorted descending
+bool testCase4SS(){
      bool correct = false;
      MyArray* systemArr = new MyArray(5);
      MyArray* userArr = new MyArray(5);

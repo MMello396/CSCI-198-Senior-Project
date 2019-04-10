@@ -42,7 +42,7 @@ session_start();
     animation: spin 2s linear infinite;
 }
 
-.animate-fade {
+/* .animate-slide_down {
   position: relative;
   -webkit-animation-name: animatefade;
   -webkit-animation-duration: 1s;
@@ -54,7 +54,7 @@ session_start();
 @keyframes animatefade { 
   from{ opacity:1 } 
   to{ opacity:0 }
-}
+} */
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
