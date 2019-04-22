@@ -2,6 +2,8 @@ var compileCount = 0;
 var errorCount = 0;
 var compileDisplay = document.getElementById('compiles');
 var errorDisplay = document.getElementById('errors');
+var compErrDisplay = document.getElementById('compErrors');
+var logiErrDisplay = document.getElementById('logiErrors');
 
 function startTimer(display) {
     var timer = -2, minutes, seconds;
@@ -35,4 +37,6 @@ function updateErrorCounter(){
 function updateDisplay(){
     compileDisplay.innerText = compileCount;
     errorDisplay.innerText = errorCount;
+    compErrDisplay.innerText = errors;
+    logiErrDisplay.innerText = logiErrors;
 }

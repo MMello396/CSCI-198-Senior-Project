@@ -45,25 +45,25 @@
     // output and compile failure.
     $compileCall = "g++ -I {$includeDir} -c {$fileName}.cpp {$includeDir}/MyArray.cpp 2>&1";
     $output = system($compileCall, $result);
-
-    // Links the object files together so the complete
-    // executable has all of the necessary files.
-    // Compiles the program and returns the results
-    // to the variable $output. The current returned
-    // result is 0, and an executible is created
-    $compileCall = "g++ -o {$fileName} {$fileName}.o MyArray.o 2>&1";
-    $output = system($compileCall, $result);
-
-    // Runs the executable
-    $command = "{$fileName}.exe {$problem}";
-    
-    // Outputs the errors of compilation to the
-    // debug screen if compilation fails. Returns
-    // resulting execution is succeeds
     if ($result == 1) {
-      echo $output;
+          echo $output;
     }
     else{
+      // Links the object files together so the complete
+      // executable has all of the necessary files.
+      // Compiles the program and returns the results
+      // to the variable $output. The current returned
+      // result is 0, and an executible is created
+      $compileCall = "g++ -o {$fileName} {$fileName}.o MyArray.o 2>&1";
+      $output = system($compileCall, $result);
+
+      // Runs the executable
+      $command = "{$fileName}.exe {$problem}";
+      
+      // Outputs the errors of compilation to the
+      // debug screen if compilation fails. Returns
+      // resulting execution is succeeds
+      
       exec($command, $message);
       
       foreach($message as $line){	

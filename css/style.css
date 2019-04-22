@@ -113,7 +113,7 @@ p.button {
 color: #404040;
 }
 
-section h2, #time, #compiles, #errors{
+section h2, #time, #compiles, #errors, #compErrors, #logiErrors{
 color: rgb(215, 186, 100);
 }
 
@@ -122,7 +122,7 @@ color: rgb(74, 181, 247);
 font-size: 14pt;
 }
 
-#title, #timer, #compileCounter, #errorCounter {
+#title, #timer, #compileCounter, #errorCounter, #compErrTitle, #logiErrTitle {
   color: rgb(76, 201, 167)
 }
 /* end page styling */

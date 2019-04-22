@@ -63,9 +63,9 @@ session_start();
 </style>
 
 <!-- A splash screen div that covers the screen until all elements are loaded -->
-<div id="cover" class="animate-fade" style="width: 100%; height: 100%; background-color: #404040; position: fixed; z-index: 100;">
+<!-- <div id="cover" class="animate-fade" style="width: 100%; height: 100%; background-color: #404040; position: fixed; z-index: 100;">
   <div id="loader"></div>
-</div>
+</div> -->
     
 <header>
     <!-- This is the navigation bar to navigate the site. Would like to update to
@@ -164,6 +164,21 @@ session_start();
             <section>
                 <h2 id="errors"></h2>
             </section>
+            <div class="row">
+                <div class="column">
+                    <h2 id="compErrTitle">Compile Errors</h2>
+                    <section>
+                        <h2 id="compErrors"></h2>
+                    </section>
+                </div>
+                <div class="column">
+                    <h2 id="logiErrTitle">Logic Errors</h2>
+                    <section>
+                        <h2 id="logiErrors"></h2>
+                    </section>
+                </div>
+            </div>
+            
         </div>
     </div>
     <!-- Row containing the editor and debug panel -->

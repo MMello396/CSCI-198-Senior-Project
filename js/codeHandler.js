@@ -1,3 +1,7 @@
+// Some global initialization variables for the error count panels to reduce funky outputs.
+errors = 0;
+logiErrors = 0;
+
 // An event listener for resizing the Monaco text editor 
 window.addEventListener("resize", function(){
     this.editor.layout();
@@ -34,9 +38,12 @@ function debugCall(codeValue,problem,user,timeout){
             incCompileCounter();
 
             // If errors are present in the response
-            var errors = (msg.match(/error/g) || []).length;
+            errors = (msg.match(/error/g) || []).length;
+            logiErrors = (msg.match(/Failed/g) || []).length;
             errorCount += errors;
+            errorCount += logiErrors;
             updateErrorCounter();
+
         }
 
        
