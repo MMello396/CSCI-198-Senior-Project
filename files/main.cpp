@@ -1,6 +1,6 @@
 #include "MyArray.h"
 #include "MyNumber.h"
-// #include "MyDCList.h"
+#include "MyDCList.h"
 #include <iostream>
 using namespace std;
 
@@ -56,6 +56,8 @@ void SSTest(){
      bool pass1 = testCase1SS();
      cout << "Test 1: " << passEval(pass1) << endl;
      
+     // Write an logic error hint here for each test case
+
      bool pass2 = testCase2SS();
      cout << "Test 2: " << passEval(pass2) << endl;
 
@@ -76,12 +78,6 @@ void DLLITest(){
 
      bool pass3 = testCase3DLLI();
      cout << "Test 3: " << passEval(pass3) << endl;
-
-     bool pass4 = testCase4DLLI();
-     cout << "Test 4: " << passEval(pass4) << endl;
-
-     bool pass5 = testCase5DLLI();
-     cout << "Test 5: " << passEval(pass5) << endl;
 }
 
 // Doubly-Linked List Deletion test functions
@@ -94,12 +90,6 @@ void DLLDTest(){
 
      bool pass3 = testCase3DLLD();
      cout << "Test 3: " << passEval(pass3) << endl;
-
-     bool pass4 = testCase4DLLD();
-     cout << "Test 4: " << passEval(pass4) << endl;
-
-     bool pass5 = testCase5DLLD();
-     cout << "Test 5: " << passEval(pass5) << endl;
 }
 
 /////////////////////////////////////
@@ -193,36 +183,21 @@ bool testCase4SS(){
 // Start of Doubly-Linked List Insertion Test Cases
 ///////////////////////////////////////////////////
 
-// 
+// test for standard case of a list of at least one element in the DLL 
 bool testCase1DLLI(){
      bool correct = false;
+     MyDCList* sysList = new MyDCList();
+     sysList->InsertHead(5);
+     MyDCList* userList = new MyDCList();
+     sysList->MyInsertHead(5);
+
+     // check for similarity in structure here
 
      return correct;
 }
 
-// 
+// test for edge case of insert when the list is of size zero.
 bool testCase2DLLI(){
-     bool correct = false;
-
-     return correct;
-}
-
-// 
-bool testCase3DLLI(){
-     bool correct = false;
-
-     return correct;
-}
-
-// 
-bool testCase4DLLI(){
-     bool correct = false;
-
-     return correct;
-}
-
-// 
-bool testCase5DLLI(){
      bool correct = false;
 
      return correct;
@@ -252,20 +227,6 @@ bool testCase2DLLD(){
 
 // 
 bool testCase3DLLD(){
-     bool correct = false;
-
-     return correct;
-}
-
-// 
-bool testCase4DLLD(){
-     bool correct = false;
-
-     return correct;
-}
-
-//
-bool testCase5DLLD(){
      bool correct = false;
 
      return correct;
