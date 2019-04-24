@@ -1,28 +1,27 @@
 #pragma once
-#include "MyNumber.h"
 
 class NodeDC {
 public:
 	// constructor
 	NodeDC(){
-		data = new MyNumber();
+		data = 0;
 		next = nullptr;
 		previous = nullptr;
 	};
 	NodeDC(int d){
-		data = new MyNumber(d);
+		data = d;
 		next = nullptr;
 		previous = nullptr;
 	}; 
 	NodeDC(int d, NodeDC* nxt, NodeDC* prv){
-		data = new MyNumber(d);
+		data = d;
 		next = nxt;
 		previous = prv;
 	};
 	// destructor
 	~NodeDC() {}
 
-	MyNumber* data;
+	int data;
 	NodeDC *next;
 	NodeDC *previous;
 };
@@ -31,12 +30,16 @@ class MyDCList {
 public:
 	MyDCList();
 	~MyDCList();
+	bool IsSorted();
 	bool Search(int a);
+	int GetSize() { return n;  }
+	void Display();
+	void DisplayDC();
 
+	// System defined functions
 	void Insert(int a);
 	void InsertMiddle(int a);
 	void InsertMiddle1(int a);
-
 	void InsertHead(int a);
 	void InsertTail(int a);
 	void InsertPosition(int pos, int a);
@@ -45,34 +48,22 @@ public:
 	void DeletePosition(int pos);
 	void DeleteMiddle(int a);
 	void DeleteMiddle1(int a);
-
-	void Display();
-	void DisplayDC();
-	int GetSize() { return n;  }
 	
-	// void GetNext() { 
-	// 	iterator_start = iterator_start->next;
-	// }
-	// MyNumber GetIterator() { 
-	// 	return iterator_start->data;
-	// }
-	// void SetStartIterator(int start) {
-	// 	iterator_start = Search(start);
-	// }
-	// void SetEndIterator(int end) {
-	// 	iterator_end = Search(end);
-	// }
-	// void SetIterator(int start, int end) {
-	// 	iterator_start = Search(start);
-	// 	iterator_end = Search(end);
-	// }
-	// bool IsFinishedIterator() {
-	// 	return (iterator_start == iterator_end);
-	// }
+	// User defined functions
+	void MyInsert(int a);
+	void MyInsertMiddle(int a);
+	void MyInsertMiddle1(int a);
+	void MyInsertHead(int a);
+	void MyInsertTail(int a);
+	void MyInsertPosition(int pos, int a);
+	void MyDeleteHead();
+	void MyDeleteTail();
+	void MyDeletePosition(int pos);
+	void MyDeleteMiddle(int a);
+	void MyDeleteMiddle1(int a);
 
-private:
+  private:
 	NodeDC *head, *tail;
-	NodeDC *iterator_start, *iterator_end;
 	int n;
 	int index;
 };

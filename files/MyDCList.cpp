@@ -1,6 +1,7 @@
 // #include "stdafx.h"
 #include "MyDCList.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -18,12 +19,32 @@ MyDCList::~MyDCList() {
 	}
 }
 
+// NodeDC* MyDCList::Search(int j) {
+// 	NodeDC *cursor = head;
+// 	for (int i = 0; i < j; i++) {
+// 		cursor = cursor->next;
+// 	}
+// 	return cursor;
+// }
+
+bool MyDCList::IsSorted(){
+	NodeDC *cursor = head;
+	bool sorted = true;
+	int i = 0;
+	while ((sorted != false) && (i < n))
+	{
+		if (cursor->data >= cursor->next->data)
+			sorted = false;
+	}
+	return sorted;
+}
+
 bool MyDCList::Search(int x) {
 	NodeDC *cursor = head;
 	bool found = false;
 	int i = 0;
 	while ((found!=true) && (i<n)) {
-		if (cursor->data->value() == x)
+		if (cursor->data == x)
 			found = true;
 		else
 			cursor = cursor->next;
@@ -67,13 +88,13 @@ void MyDCList::Insert(int value) {
 void MyDCList::InsertPosition(int pos, int value) {
 	NodeDC *pre = new NodeDC;
 	NodeDC *cur = new NodeDC;
-	NodeDC *tmp = new NodeDC(value);
+	NodeDC *tmp = new NodeDC;
 	cur = head;
 	for (int i = 1; i<pos; i++) {
 		pre = cur;
 		cur = cur->next;
 	}
-	// tmp->data->value() = value;
+	tmp->data = value;
 	pre->next = tmp;
 	tmp->next = cur;
 	n++;
@@ -88,7 +109,7 @@ void MyDCList::InsertMiddle(int value) {
 		head = tmp;
 		tail = tmp;
 	}
-	else if (head->data->value() > value) { // insert to the head
+	else if (head->data > value) { // insert to the head
 		cout << "Insert to head: " << value << endl;
 		head->previous = tmp;
 		tmp->next = head;
@@ -97,7 +118,7 @@ void MyDCList::InsertMiddle(int value) {
 	else {
 		NodeDC *prev = head;
 		NodeDC *cursor = head->next;
-		while ((cursor != NULL) && (cursor->data->value() < value)) {
+		while ((cursor != NULL) && (cursor->data < value)) {
 			prev = prev->next;
 			cursor = cursor->next;
 		}
@@ -126,7 +147,7 @@ void InsertMiddleDC(NodeDC **head, NodeDC *prev, NodeDC **tail, int value) {
 		*head = tmp;
 		*tail = tmp;
 	}
-	else if ((*head)->data->value() > value) {
+	else if ((*head)->data > value) {
 		cout << "Insert to head: " << value << endl;
 		NodeDC *tmp = new NodeDC(value);
 		(*head)->previous = tmp;
@@ -149,7 +170,7 @@ void MyDCList::InsertMiddle1(int value) {
 
 void MyDCList::DeleteMiddle(int value) {
 	//cout << "Delete element " << value << endl;
-	if (head->data->value() == value) { // remove to the head
+	if (head->data == value) { // remove to the head
 		cout << "Remove to head: " << value << endl;
 		NodeDC *tmp = head;
 		head = head->next;
@@ -159,7 +180,7 @@ void MyDCList::DeleteMiddle(int value) {
 	else {
 		NodeDC *cursor = head;
 		NodeDC *prev = cursor->previous;
-		while ((cursor != NULL) && (cursor->data->value()!=value)) {
+		while ((cursor != NULL) && (cursor->data!=value)) {
 			prev = cursor;
 			cursor = cursor->next;
 		}
@@ -248,7 +269,7 @@ void MyDCList::Display() {
 	NodeDC *tmp = new NodeDC;
 	tmp = head;
 	while (tmp != NULL) {
-		cout << tmp->data->value() << "\n";
+		cout << tmp->data << "\n";
 		tmp = tmp->next;
 	}
 }
@@ -259,22 +280,22 @@ void MyDCList::DisplayDC() {
 	int data_prev, data_next, data_head, data_tail;
 	cout << "List of size :" << n << endl;
 	if (head != NULL)
-		data_head = head->data->value();
+		data_head = head->data;
 	else
 		data_head = -1;
 	if (tail != NULL)
-		data_tail = tail->data->value();
+		data_tail = tail->data;
 	else
 		data_tail = -1;
 	cout << "Head:" << data_head << endl;
 	cout << "Tail:" << data_tail << endl;
 	while (tmp != NULL) {
 		if (tmp->previous != NULL)
-			data_prev = tmp->previous->data->value();
+			data_prev = tmp->previous->data;
 		else
 			data_prev = -1;
 		if (tmp->next != NULL)
-			data_next = tmp->next->data->value();
+			data_next = tmp->next->data;
 		else
 			data_next = -1;
 		cout << "(" << data_prev << "," << tmp->data << "," << data_next << ")" << endl;

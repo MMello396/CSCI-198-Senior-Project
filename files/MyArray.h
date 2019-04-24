@@ -11,7 +11,7 @@ public:
 	// destructor
 	~MyArray();
 
-	// Accessor + Modifiers
+	// Accessors and Modifiers
 	int GetSize() const;
 	MyNumber GetElement(int i) const;
 	void SetElement(int i, MyNumber x);
@@ -40,9 +40,6 @@ public:
 	MyNumber& operator[] (unsigned i);
 	MyArray* operator+(const MyArray* a);
 
-
-	// These two overloads are not working...
-
 	// Copies the two arrays of MyNumbers
 	int operator=(MyArray* b){
 		for (int i = 0; i < n; i++)
@@ -55,10 +52,6 @@ public:
 		for (int i = 0; i < n; i++)
 		a[i] == b[i];
 	}
-
-
-	// tuple<int, int, int> FindMaxCrossingSubarray(int low, int mid, int high);
-	// tuple<int, int, int> FindMaximumSubarray(int low, int high);
 
 	// Stats
 	void Reset();
@@ -98,11 +91,3 @@ private:
 	MyNumber* a; // array
 	int n; // size of the array
 };
-
-// extern void MyArrayExample00();
-// extern void MyArrayExample001();
-// extern void MyArrayExample01();
-// extern void MyArrayExample02();
-// extern void MyArrayExample03();
-// extern void MyArrayExample04();
-// extern void MyArrayExample05();
