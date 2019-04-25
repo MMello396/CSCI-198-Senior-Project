@@ -28,11 +28,14 @@
     // to a variable
     $textToWrite = $sCode;
     
-    // TODO: depending on problem being worked
+    // depending on problem being worked
     // choose the right file to append to user
     // code provided in "textToWrite"
-
-    $part1 = file_get_contents("{$includeDir}/main.cpp");
+    
+    // problem based determination for which main file to use
+    if ($problem == 1) $part1 = file_get_contents("{$includeDir}/SortingMain.cpp");
+    if ($problem == 2) $part1 = file_get_contents("{$includeDir}/DCListInsertMain.cpp");
+    if ($problem == 3) $part1 = file_get_contents("{$includeDir}/DCListDeleteMain.cpp");
     $part2 = $textToWrite;
 
     fwrite($sourceFile, $part1);
@@ -43,7 +46,7 @@
     // with a specific name for the outputted 
     // compiled file on success or the errors 
     // output and compile failure.
-    $compileCall = "g++ -I {$includeDir} -c {$fileName}.cpp {$includeDir}/MyArray.cpp 2>&1";
+    $compileCall = "g++ -I {$includeDir} -c {$fileName}.cpp {$includeDir}/MyArray.cpp {$includeDir}/MyDCList.cpp 2>&1";
     $output = system($compileCall, $result);
     if ($result == 1) {
           echo $output;
@@ -54,7 +57,8 @@
       // Compiles the program and returns the results
       // to the variable $output. The current returned
       // result is 0, and an executible is created
-      $compileCall = "g++ -o {$fileName} {$fileName}.o MyArray.o 2>&1";
+      if ($problem == 1) $compileCall = "g++ -o {$fileName} {$fileName}.o MyArray.o 2>&1";
+      if ($problem == 2 || $problem == 3) $compileCall = "g++ -o {$fileName} {$fileName}.o MyDCList.o 2>&1";
       $output = system($compileCall, $result);
 
       // Runs the executable

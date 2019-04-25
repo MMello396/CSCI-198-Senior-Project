@@ -63,9 +63,9 @@ session_start();
 </style>
 
 <!-- A splash screen div that covers the screen until all elements are loaded -->
-<!-- <div id="cover" class="animate-fade" style="width: 100%; height: 100%; background-color: #404040; position: fixed; z-index: 100;">
+<div id="cover" class="animate-fade" style="width: 100%; height: 100%; background-color: #404040; position: fixed; z-index: 100;">
   <div id="loader"></div>
-</div> -->
+</div>
     
 <header>
     <!-- This is the navigation bar to navigate the site. Would like to update to
@@ -76,28 +76,13 @@ session_start();
                 <a href="menu.php"><button id="menu" type="button">Menu</button></a>
             </li>
             <li>
-                <button id="p1" type="button" onclick="updateProblem1()">Problem 1</button>
+                <button id="p1" type="button" onclick="save();updateProblem1();">Selection Sort</button>
             </li>
             <li>
-                <button id="p2" type="button" onclick="updateProblem2()">Problem 2</button>
+                <button id="p2" type="button" onclick="save();updateProblem2();">DCL Insertion </button>
             </li>
             <li>
-                <button id="p3" type="button" onclick="updateProblem3()">Problem 3</button>
-            </li>
-            <li>
-                <button id="p4" type="button" onclick="updateProblem4()">Problem 4</button>
-            </li>
-            <li>
-                <button id="p5" type="button" onclick="updateProblem5()">Problem 5</button>
-            </li>
-            <li>
-                <button id="p6" type="button" onclick="updateProblem6()">Problem 6</button>
-            </li>
-            <li>
-                <button id="p7" type="button" onclick="updateProblem7()">Problem 7</button>
-            </li>
-            <li>
-                <button id="p8" type="button" onclick="updateProblem8()">Problem 8</button>
+                <button id="p3" type="button" onclick="save();updateProblem3();">DCL Deletion</button>
             </li>
         </ul>
     </nav>
@@ -166,13 +151,13 @@ session_start();
             </section>
             <div class="row">
                 <div class="column">
-                    <h2 id="compErrTitle">Compile Errors</h2>
+                    <h2 id="compErrTitle">Compile Errors:</h2>
                     <section>
                         <h2 id="compErrors"></h2>
                     </section>
                 </div>
                 <div class="column">
-                    <h2 id="logiErrTitle">Logic Errors</h2>
+                    <h2 id="logiErrTitle">Logic Errors:</h2>
                     <section>
                         <h2 id="logiErrors"></h2>
                     </section>

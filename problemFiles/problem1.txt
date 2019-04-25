@@ -4,8 +4,7 @@
     "task": "Correctly code the selection sort algorithm for sorting an array.",
     "inputFormat": "An array[N] where N is the size of the array.",
     "constraints": "Must use Methods available to swap the values of elements in the array.<br/>Cannot modify the name of the function provided.",
-    "outputFormat": "Correctly sorted arrays regardless of size.",
+    "outputFormat": "Correctly sorted arrays of size N.",
     "sampleInput": "a[0,10,5,33,2,81,6,4,1,284]",
-    "sampleOutput": "a[0,1,2,4,5,6,10,33,81,284]",
-    "startingCode": ""
+    "sampleOutput": "a[0,1,2,4,5,6,10,33,81,284]"
 }

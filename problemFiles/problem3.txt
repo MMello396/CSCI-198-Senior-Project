@@ -1,0 +1,10 @@
+{
+    "title": "Doubly Linked List Deletion",
+    "objective": "Learn how to delete a node from a doubly linked list data structure.",
+    "task": "Implement a function that deletes the head node of a list of doubly linked nodes.",
+    "inputFormat": "N/A",
+    "constraints": "Must maintain proper doubly linked list structure.<br/>Cannot modify the name of the function provided.",
+    "outputFormat": "N/A",
+    "sampleInput": "N/A",
+    "sampleOutput": "N/A"
+}

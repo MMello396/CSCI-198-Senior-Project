@@ -1,7 +1,5 @@
-// #include "stdafx.h"
 #include "MyDCList.h"
 #include <iostream>
-#include <fstream>
 
 using namespace std;
 
@@ -19,13 +17,13 @@ MyDCList::~MyDCList() {
 	}
 }
 
-// NodeDC* MyDCList::Search(int j) {
-// 	NodeDC *cursor = head;
-// 	for (int i = 0; i < j; i++) {
-// 		cursor = cursor->next;
-// 	}
-// 	return cursor;
-// }
+NodeDC* MyDCList::GetHead(){
+	return head;
+}
+
+NodeDC* MyDCList::GetTail(){
+	return tail;
+}
 
 bool MyDCList::IsSorted(){
 	NodeDC *cursor = head;
@@ -169,7 +167,6 @@ void MyDCList::InsertMiddle1(int value) {
 }
 
 void MyDCList::DeleteMiddle(int value) {
-	//cout << "Delete element " << value << endl;
 	if (head->data == value) { // remove to the head
 		cout << "Remove to head: " << value << endl;
 		NodeDC *tmp = head;
@@ -225,12 +222,19 @@ void MyDCList::DeleteMiddle1(int value) {
 }
 
 void MyDCList::DeleteHead() {
-	NodeDC *tmp = new NodeDC;
-	tmp = head;
-	head = head->next;
-	head->previous = NULL;
-	delete tmp;
-	n--;
+	if(head == tail){
+		head = NULL;
+		tail = NULL;
+		n--;
+	}
+	else if(head != NULL){
+		NodeDC *tmp = new NodeDC;
+		tmp = head;
+		head = head->next;
+		head->previous = NULL;
+		delete tmp;
+		n--;
+	}
 }
 
 void MyDCList::DeleteTail() {
@@ -301,39 +305,4 @@ void MyDCList::DisplayDC() {
 		cout << "(" << data_prev << "," << tmp->data << "," << data_next << ")" << endl;
 		tmp = tmp->next;
 	}
-}
-
-void MyDCListExample01() {
-	cout << "Test the Double Chained List" << endl;
-	MyDCList* LD = new MyDCList();
-	LD->DisplayDC();
-
-
-	LD->InsertMiddle1(5);
-	LD->InsertMiddle1(2);
-	LD->InsertMiddle1(3);
-	LD->InsertMiddle1(1);
-	LD->InsertMiddle1(15);
-	LD->InsertMiddle1(50);
-	LD->InsertMiddle1(-50);
-	LD->InsertMiddle1(20);
-
-	LD->DisplayDC();
-	//LD->DeletePosition(0);
-	//LD->DisplayDC();
-	//LD->DeletePosition(6);
-	//LD->DisplayDC();
-	LD->DeletePosition(4);
-
-//	LD->DeleteMiddle1(5);
-//	LD->DeleteMiddle1(10);
-//	LD->DeleteMiddle1(50);
-//	LD->DeleteMiddle1(-50);
-//	LD->DeleteMiddle1(5);
-//	LD->DeleteMiddle1(20);
-
-	LD->DisplayDC();
-
-	delete LD;
-
 }

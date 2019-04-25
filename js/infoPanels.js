@@ -16,7 +16,6 @@ function startTimer(display) {
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         display.textContent = minutes + ":" + seconds;
-
     }, 1000);
 }
 

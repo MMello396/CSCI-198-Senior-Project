@@ -27,6 +27,10 @@ public:
 };
 
 class MyDCList {
+private:
+	NodeDC *head, *tail;
+	int n;
+
 public:
 	MyDCList();
 	~MyDCList();
@@ -35,6 +39,8 @@ public:
 	int GetSize() { return n;  }
 	void Display();
 	void DisplayDC();
+	NodeDC* GetHead();
+	NodeDC* GetTail();
 
 	// System defined functions
 	void Insert(int a);
@@ -62,10 +68,7 @@ public:
 	void MyDeleteMiddle(int a);
 	void MyDeleteMiddle1(int a);
 
-  private:
-	NodeDC *head, *tail;
-	int n;
-	int index;
+	
 };
 
 extern void MyDCListExample01();
