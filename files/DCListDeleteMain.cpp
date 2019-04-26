@@ -38,31 +38,56 @@ void DCLDTest(){
     // Test case 1
     tuple<bool, bool, bool> pass1 = testCase1DCLD();
     cout << "Test 1: " << passEval(get<2>(pass1)) << endl;
-    if (get<2>(pass1)){
-        cout << "Structure of list links are good.\n";
+    if (get<0>(pass1)){
+        cout << "Deletion of correct node: good.\n";
     } else {
-        cout << "There is an issue with the structure of the links in the list.\n";
+        cout << "Deletion of correct node: bad.\n";
     }
-       
+    if (get<1>(pass1)){
+        cout << "List link structure: good.\n\n";
+    } else {
+        cout << "List link structure: broken.\n\n";
+    }
+    
 
     // Logic error hint
-    if (!get<4>(pass1))
+    if (!get<2>(pass1))
         cout << "Be sure to make the necessary links between remaining nodes before deleting the node.\nThis will ensure access to portions of the list is not lost."
              << "\n\n";
 
-    // // Test case 2
-    // bool pass2 = testCase2DCLD();
-    // cout << "Test 2: " << passEval(pass2) << endl;
+    // Test case 2
+    tuple<bool, bool, bool> pass2 = testCase2DCLD();
+    cout << "Test 2: " << passEval(get<2>(pass2)) << endl;
+    if (get<0>(pass2)){
+        cout << "Deletion of correct node: good.\n";
+    } else {
+        cout << "Deletion of correct node: bad.\n";
+    }
+    if (get<1>(pass2)){
+        cout << "List link structure: good.\n\n";
+    } else {
+        cout << "List link structure: broken.\n\n";
+    }
 
-    // // Logic error hint
-    // if(!pass2) cout << "Make sure your code handles cases where there are no nodes in the list." << "\n\n";
+    // Logic error hint
+    if(!get<2>(pass2)) cout << "Make sure your code handles cases where there are no nodes in the list." << "\n\n";
 
-    // // Test case 3
-    // bool pass3 = testCase3DCLD();
-    // cout << "Test 3: " << passEval(pass3) << endl;
+    // Test case 3
+    tuple<bool, bool, bool> pass3 = testCase3DCLD();
+    cout << "Test 3: " << passEval(get<2>(pass3)) << endl;
+    if (get<0>(pass3)){
+        cout << "Deletion of correct node: good.\n";
+    } else {
+        cout << "Deletion of correct node: bad.\n";
+    }
+    if (get<1>(pass3)){
+        cout << "List link structure: good.\n\n";
+    } else {
+        cout << "List link structure: broken.\n\n";
+    }
 
-    // // Logic error hint
-    // if(!pass3) cout << "Make sure your code handles cases where there are no nodes left in the list after deleting the node." << "\n\n";
+    // Logic error hint
+    if(!get<2>(pass3)) cout << "Make sure your code handles cases where there are no nodes left in the list after deleting the node." << "\n\n";
 }
 
 //////////////////////////////////////////////////
@@ -90,52 +115,55 @@ tuple<bool, bool, bool> testCase1DCLD()
 
     // check for similarity in structure here
     if (userList->GetHead() != NULL){
-        if (systemList->GetHead()->data == userList->GetHead()->data &&
-        userList->GetHead()->previous == NULL){
-
+        if (userList->isSame(systemList) &&
+        userList->structureGood()){
             correct = true;
         }   
     }
 
     // Builds the tuple for returning information from the test
-    return make_tuple(systemList->GetHead()->data == userList->GetHead()->data, userList->structureGood(), correct);
+    return make_tuple(userList->isSame(systemList), userList->structureGood(), correct);
 }
 
-// // Edge case where there are no nodes in the list before attempting to delete the head node.
-// tuple<bool, bool, bool> testCase2DCLD(){
-//     bool correct = false;
+// Edge case where there are no nodes in the list before attempting to delete the head node.
+tuple<bool, bool, bool> testCase2DCLD(){
+    bool correct = false;
 
-//     MyDCList* systemList = new MyDCList();
-//     MyDCList* userList = new MyDCList();
-//     systemList->DeleteHead();
-//     userList->MyDeleteHead();
+    MyDCList* systemList = new MyDCList();
+    MyDCList* userList = new MyDCList();
+    systemList->DeleteHead();
+    userList->MyDeleteHead();
 
-//     // check for similarity in structure here
-//     if (systemList->GetHead() == userList->GetHead() && systemList->GetTail() == userList->GetTail()){
-//         correct = true;
-//     }   
+    // check for similarity in structure here
+    if (userList->isSame(systemList) &&
+    userList->structureGood()){
+        correct = true;
+    }   
 
-//     return correct;
-// }
+    // Builds the tuple for returning information from the test
+    return make_tuple(userList->isSame(systemList), userList->structureGood(), correct);
+}
 
-// // Edge case where there are no nodes left in the list after deleting the head node.
-// tuple<bool, bool, bool> testCase3DCLD(){
-//     bool correct = false;
+// Edge case where there are no nodes left in the list after deleting the head node.
+tuple<bool, bool, bool> testCase3DCLD(){
+    bool correct = false;
 
-//     MyDCList* systemList = new MyDCList();
-//     MyDCList* userList = new MyDCList();
-//     systemList->Insert(4);
-//     userList->Insert(4);
-//     systemList->DeleteHead();
-//     userList->MyDeleteHead();
+    MyDCList* systemList = new MyDCList();
+    MyDCList* userList = new MyDCList();
+    systemList->Insert(4);
+    userList->Insert(4);
+    systemList->DeleteHead();
+    userList->MyDeleteHead();
 
-//     // check for similarity in structure here
-//     if (systemList->GetHead() == userList->GetHead() && systemList->GetTail() == userList->GetTail()){
-//         correct = true;
-//     }   
+    // check for similarity in structure here
+    if (userList->isSame(systemList) &&
+    userList->structureGood()){
+        correct = true;
+    }   
 
-//     return correct;
-// }
+    // Builds the tuple for returning information from the test
+    return make_tuple(userList->isSame(systemList), userList->structureGood(), correct);
+}
 
 ////////////////////////////////////////////////
 // End of Doubly-Linked List Deletion Test Cases

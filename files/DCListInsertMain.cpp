@@ -11,8 +11,8 @@ void DCLITest();
 string passEval(bool pass);
 
 // Doubly-Linked List Insertion test functions
-bool testCase1DCLI();
-bool testCase2DCLI();
+tuple<bool,bool,bool> testCase1DCLI();
+tuple<bool,bool,bool> testCase2DCLI();
 
 int main(int argc, char **argv){
 
@@ -35,18 +35,38 @@ string passEval(bool pass){
 void DCLITest(){
 
      // Test case 1
-     bool pass1 = testCase1DCLI();
-     cout << "Test 1: " << passEval(pass1) << endl;
-     
+     tuple<bool,bool,bool> pass1 = testCase1DCLI();
+     cout << "Test 1: " << passEval(get<2>(pass1)) << endl;
+     if (get<0>(pass1)){
+          cout << "Insertion of node: good.\n";
+     } else {
+          cout << "Insertion of node: bad.\n";
+     }
+     if (get<1>(pass1)){
+          cout << "List link structure: good.\n\n";
+     } else {
+          cout << "List link structure: broken.\n\n";
+     }     
+
      // Logic error hint
-     if(!pass1) cout << "Make sure that the correct links are made for the newly inserted node." << "\n\n";
+     if(!get<2>(pass1)) cout << "Make sure that the correct links are made for the newly inserted node." << "\n\n";
 
      // Test case 2
-     bool pass2 = testCase2DCLI();
-     cout << "Test 2: " << passEval(pass2) << endl;
+     tuple<bool,bool,bool> pass2 = testCase2DCLI();
+     cout << "Test 2: " << passEval(get<2>(pass2)) << endl;
+     if (get<0>(pass2)){
+          cout << "Insertion of node: good.\n";
+     } else {
+          cout << "Insertion of node: bad.\n";
+     }
+     if (get<1>(pass2)){
+          cout << "List link structure: good.\n\n";
+     } else {
+          cout << "List link structure: broken.\n\n";
+     }
 
      // Logic error hint
-     if(!pass2) cout << "How should the links be set if the newly added node is the only node?" << "\n\n";
+     if(!get<2>(pass2)) cout << "How should the links be set if the newly added node is the only node?" << "\n\n";
 }
 
 ///////////////////////////////////////////////////
@@ -54,7 +74,7 @@ void DCLITest(){
 ///////////////////////////////////////////////////
 
 // test for standard case of a list of at least one element in the DLL 
-bool testCase1DCLI(){
+tuple<bool,bool,bool> testCase1DCLI(){
      bool correct = false;
      MyDCList* systemList = new MyDCList();
      MyDCList* userList = new MyDCList();
@@ -71,19 +91,17 @@ bool testCase1DCLI(){
      userList->MyInsertHead(7);
 
      // check for similarity in structure here
-     if (userList->GetHead() != NULL && userList->GetTail() != NULL){
-          if (systemList->GetHead()->data == userList->GetHead()->data &&
-           systemList->GetTail()->data == userList->GetTail()->data &&
-           userList->GetHead()->previous == NULL){
-               correct = true;
-          }   
-     }
-     
-     return correct;
+     if (userList->isSame(systemList) &&
+     userList->structureGood()){
+          correct = true;
+     }   
+
+     // Builds the tuple for returning information from the test
+     return make_tuple(userList->isSame(systemList), userList->structureGood(), correct);
 }
 
 // test for edge case of insert when the list is of size zero.
-bool testCase2DCLI(){
+tuple<bool,bool,bool> testCase2DCLI(){
      bool correct = false;
      MyDCList* systemList = new MyDCList();
      MyDCList* userList = new MyDCList();
@@ -91,16 +109,13 @@ bool testCase2DCLI(){
      userList->MyInsertHead(5);
 
      // check for similarity in structure here
-     if (userList->GetHead() != NULL && userList->GetTail() != NULL){
-          if (systemList->GetHead()->data == userList->GetHead()->data &&
-           systemList->GetTail()->data == userList->GetTail()->data &&
-           userList->GetHead()->previous == NULL){
+     if (userList->isSame(systemList) &&
+     userList->structureGood()){
+          correct = true;
+     }   
 
-               correct = true;
-          }   
-     }
-
-     return correct;
+     // Builds the tuple for returning information from the test
+     return make_tuple(userList->isSame(systemList), userList->structureGood(), correct);
 }
 
 /////////////////////////////////////////////////

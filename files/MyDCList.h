@@ -29,7 +29,7 @@ public:
 class MyDCList {
 private:
 	NodeDC *head, *tail;
-	int n;
+	int n = 0;
 
 public:
 	MyDCList();

@@ -177,43 +177,28 @@ tuple<int, int, bool, bool> testCase3SS(){
      return make_tuple(userArr->TotalComps(), userArr->TotalAssigns(), userArr->IsSorted(), correct);
 }
 
-     // For edge case of n elements pre-sorted descending
-     tuple<int, int, bool, bool> testCase4SS(){
-          bool correct = false;
-          MyArray* systemArr = new MyArray(16);
-          MyArray* userArr = new MyArray(16);
+// For edge case of n elements pre-sorted descending
+tuple<int, int, bool, bool> testCase4SS(){
+     bool correct = false;
+     MyArray* systemArr = new MyArray(16);
+     MyArray* userArr = new MyArray(16);
 
-          systemArr->InitSortedDescending(50);
-          userArr->Copy(systemArr);
-          userArr->Reset();
-          systemArr->Reset();
+     systemArr->InitSortedDescending(50);
+     userArr->Copy(systemArr);
+     userArr->Reset();
+     systemArr->Reset();
 
-          systemArr->SelectionSort();
-          userArr->MySelectionSort();
+     systemArr->SelectionSort();
+     userArr->MySelectionSort();
 
-          // Determines if the alorithm is working properly
-          if(userArr->IsSorted() && userArr->TotalAssigns() == systemArr->TotalAssigns()
-           && userArr->TotalComps() == systemArr->TotalComps()) correct = true;
+     // Determines if the alorithm is working properly
+     if(userArr->IsSorted() && userArr->TotalAssigns() == systemArr->TotalAssigns()
+          && userArr->TotalComps() == systemArr->TotalComps()) correct = true;
 
-          // Builds the tuple for returning information from the test
-          return make_tuple(userArr->TotalComps(), userArr->TotalAssigns(), userArr->IsSorted(), correct);
-     }
-
-     // ///////////////////////////////////
-     // // End of Selection Sort Test Cases
-     // ///////////////////////////////////
-     void MyArray::MySelectionSort()
-     {
-          for (int i = 0; i < n; ++i)
-          {
-               int min = i; // min = index of the minimum value for the array between
-               for (int j = i + 1; j < n; ++j)
-               { // search for the minimum index j between i and n-1
-                    if (a[j] < a[min])
-                    {
-                         min = j;
-                    }
-               }
-               SwapIndex(i, min);
-          }
+     // Builds the tuple for returning information from the test
+     return make_tuple(userArr->TotalComps(), userArr->TotalAssigns(), userArr->IsSorted(), correct);
 }
+
+// ///////////////////////////////////
+// // End of Selection Sort Test Cases
+// ///////////////////////////////////

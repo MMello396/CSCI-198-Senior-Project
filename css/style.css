@@ -84,8 +84,6 @@ nav ul li button {
 
 button:hover{
   color: black;
-  width: 135px;
-  font-size: 14pt;
   background-color: #e0e0e0;
   transition-duration: .5s;
 }

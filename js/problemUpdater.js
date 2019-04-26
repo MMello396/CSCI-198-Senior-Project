@@ -1,5 +1,6 @@
 var textEditor = editor;
 var problem;
+var debugPanel = document.getElementById("debug");
 function save() {
 
     // get the data from the various information panels
@@ -36,6 +37,7 @@ function updateProblem1(){
                 document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
                 document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
                 textEditor.setValue("void MyArray::MySelectionSort()\{\n\t/*Use SwapIndex(x,y) to swap values of array elements a[x] and a[y]*/\n\t/* ENTER CODE HERE */\n\n}");
+                debugPanel.innerHTML = "Debug Window";
                 problem = 1;
             }
         }
@@ -59,7 +61,8 @@ function updateProblem2(){
                 document.getElementById("outputFormat").innerHTML = parsedProblem.outputFormat;
                 document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
                 document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
-                textEditor.setValue("void MyDCList::MyInsertHead(int x)\{\n\t/*node Constructor: Node(value, next, previous)*/\n\t/* ENTER CODE HERE */\n\n}");
+                textEditor.setValue("void MyDCList::MyInsertHead(int x)\{\n\t//node Constructor: Node(x, next, previous)\n\t//Nodes have members data, next, and previous\n\t//The doubly linked list has members head, tail, and is of size n\n\t/* ENTER CODE HERE */\n\n}");
+                debugPanel.innerHTML = "Debug Window";
                 problem = 2;
             }
         }
@@ -83,7 +86,8 @@ function updateProblem3(){
                 document.getElementById("outputFormat").innerHTML = parsedProblem.outputFormat;
                 document.getElementById("sampleInput").innerHTML = parsedProblem.sampleInput;
                 document.getElementById("sampleOutput").innerHTML = parsedProblem.sampleOutput;
-                textEditor.setValue("void MyDCList::MyDeleteHead()\{\n\t/*node attributes: value of node; next node pointer; previous node pointer*/\n\t/* ENTER CODE HERE */\n\n}");
+                textEditor.setValue("void MyDCList::MyDeleteHead()\{\n\t//node Constructor: Node(x, next, previous)\n\t//Nodes have members data, next, and previous\n\t//The doubly linked list has members head, tail, and is of size n\n\t/* ENTER CODE HERE */\n\n}");
+                debugPanel.innerHTML = "Debug Window";
                 problem = 3;
             }
         }

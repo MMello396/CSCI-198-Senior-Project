@@ -26,20 +26,23 @@ NodeDC* MyDCList::GetTail(){
 }
 
 bool MyDCList::structureGood(){
-	int nodesLeftHead, nodesLeftTail = n;
 
-	NodeDC *current = head;
-	while (nodesLeftHead > 0){
-		if(current->next != NULL) current = current->next;
-		nodesLeftHead--;
+	NodeDC *currentHead = head;
+	NodeDC *currentTail = tail;
+
+	int i = 0;
+	// case of no nodes in the list
+	if (head == tail) return true;
+
+	while (i < n){
+		
+		if(currentHead->next != NULL) currentHead = currentHead->next;
+	
+		if (currentTail->previous != NULL) currentTail = currentTail->previous;
+		i++;
 	}
 
-	while (nodesLeftHead > 0){
-		if (current->previous != NULL) current = current->previous;
-		nodesLeftTail--;
-	}
-
-	if (nodesLeftHead == 0 && nodesLeftTail == 0) {
+	if (i == n) {
 		return true;
 	} else {
 		return false;
@@ -50,34 +53,22 @@ bool MyDCList::isSame(MyDCList* otherList)
 {
 	bool isSame = false;
 
-	NodeDC *current = otherList->head;
-	int nodes = otherList->GetSize() - 1;
-	int otherValues[nodes];
-	while (nodes > 0)
+	NodeDC *oListCurrent = otherList->head;
+	NodeDC *current = head;
+	int i = 0;
+	while (i < n)
 	{
-		otherValues[nodes] = current->data;
-		if (current->next != NULL) current = current->next;
-		nodes--;
+		if (current != NULL){
+			if (oListCurrent->data == current->data){
+				oListCurrent = oListCurrent->next;
+				current = current->next;
+				i++;
+			} else {
+				return false;
+			}
+		}
 	}
-
-	nodes = GetSize() - 1;
-	int myValues[nodes];
-	while (nodes > 0)
-	{
-		otherValues[nodes] = current->data;
-		if (current->next != NULL)
-			current = current->next;
-		nodes--;
-	}
-
-	if ()
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return true;
 }
 
 bool MyDCList::IsSorted()
@@ -308,7 +299,7 @@ void MyDCList::DeleteMiddle1(int value)
 
 void MyDCList::DeleteHead()
 {
-	if (head == tail)
+	if (head == tail && head != NULL)
 	{
 		head = NULL;
 		tail = NULL;
