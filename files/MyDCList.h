@@ -41,6 +41,8 @@ public:
 	void DisplayDC();
 	NodeDC* GetHead();
 	NodeDC* GetTail();
+	bool structureGood();
+	bool isSame(MyDCList *);
 
 	// System defined functions
 	void Insert(int a);

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <tuple>
 #include "MyArray.h"
 #include "MyNumber.h"
 using namespace std;
@@ -10,10 +11,10 @@ void SSTest();
 string passEval(bool pass);
 
 // Selection Sort test functions
-bool testCase1SS();
-bool testCase2SS();
-bool testCase3SS();
-bool testCase4SS();
+tuple<int, int, bool, bool> testCase1SS();
+tuple<int, int, bool, bool> testCase2SS();
+tuple<int, int, bool, bool> testCase3SS();
+tuple<int, int, bool, bool> testCase4SS();
 
 int main(int argc, char **argv){
 
@@ -36,40 +37,82 @@ string passEval(bool pass){
 void SSTest(){
      
      // Test case 1
-     bool pass1 = testCase1SS();
-     cout << "Test 1: " << passEval(pass1) << endl;
-     
+     // tuple<int, int, int, bool> pass1 = testCase1SS
+     tuple<int, int, bool, bool> pass1 = testCase1SS();
+     cout << "Test 1: " << passEval(get<3>(pass1)) << endl;
+     cout << "Number of comparisons: " << get<0>(pass1) << "\nNumber of Assignments: " << get<1>(pass1) << endl;
+     if (get<2>(pass1)) {
+          cout << "The array is correctly sorted.\n\n";
+     } else{
+          cout << "The array is incorrectly sorted.\n\n";
+     };
+
      // Logic error hint
-     if(!pass1) cout << "Double check how you are comparing array elements." << "\n\n";
+     if (!get<3>(pass1))
+          cout << "Double check how you are comparing array elements."
+               << "\n\n";
 
      // Test case 2
-     bool pass2 = testCase2SS();
-     cout << "Test 2: " << passEval(pass2) << endl;
+     tuple<int, int, bool, bool> pass2 = testCase2SS();
+     cout << "Test 2: " << passEval(get<3>(pass2)) << endl;
+     cout << "Number of comparisons: " << get<0>(pass2) << "\nNumber of Assignments: " << get<1>(pass2) << endl;
+     if (get<2>(pass2))
+     {
+          cout << "The array is correctly sorted.\n\n";
+     }
+     else
+     {
+          cout << "The array is incorrectly sorted.\n\n";
+     };
 
      // Logic error hint
-     if(!pass2) cout << "Make sure that you are not sorting or comparing elements unnecessarily." << "\n\n";
+     if (!get<3>(pass2))
+          cout << "Make sure that you are not sorting or comparing elements unnecessarily."
+               << "\n\n";
 
      // Test case 3
-     bool pass3 = testCase3SS();
-     cout << "Test 3: " << passEval(pass3) << endl;
+     tuple<int, int, bool, bool> pass3 = testCase3SS();
+     cout << "Test 3: " << passEval(get<3>(pass3)) << endl;
+     cout << "Number of comparisons: " << get<0>(pass3) << "\nNumber of Assignments: " << get<1>(pass3) << endl;
+     if (get<2>(pass3))
+     {
+          cout << "The array is correctly sorted.\n\n";
+     }
+     else
+     {
+          cout << "The array is incorrectly sorted.\n\n";
+     };
 
      // Logic error hint
-     if(!pass3) cout << "Need to consider what the correct behaviour should be if there is no sorting needed." << "\n\n";
+     if (!get<3>(pass3))
+          cout << "Need to consider what the correct behaviour should be if there is no sorting needed."
+               << "\n\n";
 
      // Test case 4
-     bool pass4 = testCase4SS();
-     cout << "Test 4: " << passEval(pass4) << endl;
-     
+     tuple<int, int, bool, bool> pass4 = testCase4SS();
+     cout << "Test 4: " << passEval(get<3>(pass4)) << endl;
+     cout << "Number of comparisons: " << get<0>(pass4) << "\nNumber of Assignments: " << get<1>(pass4) << endl;
+     if (get<2>(pass4))
+     {
+          cout << "The array is correctly sorted.\n\n";
+     }
+     else
+     {
+          cout << "The array is incorrectly sorted.\n\n";
+     };
+
      // Logic error hint
-     if(!pass4) cout << "Need to consider how the function should behave in the worst case scenario for sorting an array." << "\n\n";
+     if (!get<3>(pass4))
+          cout << "Need to consider how the function should behave in the worst case scenario for sorting an array."
+               << "\n\n";
 }
 
-/////////////////////////////////////
-// Start of Selection Sort Test Cases
-/////////////////////////////////////
+// /////////////////////////////////////
+// // Start of Selection Sort Test Cases
+// /////////////////////////////////////
 
 // For base case of array of n elements
-bool testCase1SS(){
+tuple<int, int, bool, bool> testCase1SS(){
      bool correct = false;
      MyArray* systemArr = new MyArray(5);
      MyArray* userArr = new MyArray(5);
@@ -78,18 +121,20 @@ bool testCase1SS(){
      userArr->Copy(systemArr);
      userArr->Reset();
      systemArr->Reset();
-      
-     systemArr->SelectionSort(); 
-     userArr->MySelectionSort();
      
-     if(userArr->IsSorted() && userArr->TotalAssigns() == systemArr->TotalAssigns()
-      && userArr->TotalComps() == systemArr->TotalComps()) correct = true;
-
-     return correct;
+     systemArr->SelectionSort(); 
+     userArr->MySelectionSort();     
+     
+     // Determines if the alorithm is working properly
+     if (userArr->IsSorted() && userArr->TotalAssigns() == systemArr->TotalAssigns() && userArr->TotalComps() == systemArr->TotalComps()) correct = true;
+     
+     // Builds the tuple for returning information from the test
+     return make_tuple(userArr->TotalComps(), userArr->TotalAssigns(), userArr->IsSorted(), correct);
 }
 
 // For edge case of 1 element
-bool testCase2SS(){
+tuple<int, int, bool, bool> testCase2SS()
+{
      bool correct = false;
      MyArray* systemArr = new MyArray(1);
      MyArray* userArr = new MyArray(1);
@@ -102,16 +147,19 @@ bool testCase2SS(){
      systemArr->SelectionSort();
      userArr->MySelectionSort();
 
+     // Determines if the alorithm is working properly
      if(userArr->IsSorted() && userArr->TotalAssigns() == systemArr->TotalAssigns()
       && userArr->TotalComps() == systemArr->TotalComps()) correct = true;
-     return correct;
+
+     // Builds the tuple for returning information from the test
+     return make_tuple(userArr->TotalComps(), userArr->TotalAssigns(), userArr->IsSorted(), correct);
 }
 
 // For edge case of n elements pre-sorted ascending
-bool testCase3SS(){
+tuple<int, int, bool, bool> testCase3SS(){
      bool correct = false;
-     MyArray* systemArr = new MyArray(5);
-     MyArray* userArr = new MyArray(5);
+     MyArray* systemArr = new MyArray(10);
+     MyArray* userArr = new MyArray(10);
 
      systemArr->InitSortedAscending(50);
      userArr->Copy(systemArr);
@@ -121,30 +169,51 @@ bool testCase3SS(){
      systemArr->SelectionSort();
      userArr->MySelectionSort();
 
+     // Determines if the alorithm is working properly
      if(userArr->IsSorted() && userArr->TotalAssigns() == systemArr->TotalAssigns()
-      && userArr->TotalComps() == systemArr->TotalComps()) correct = true;
-     return correct;
+          && userArr->TotalComps() == systemArr->TotalComps()) correct = true;
+
+     // Builds the tuple for returning information from the test
+     return make_tuple(userArr->TotalComps(), userArr->TotalAssigns(), userArr->IsSorted(), correct);
 }
 
-// For edge case of n elements pre-sorted descending
-bool testCase4SS(){
-     bool correct = false;
-     MyArray* systemArr = new MyArray(5);
-     MyArray* userArr = new MyArray(5);
+     // For edge case of n elements pre-sorted descending
+     tuple<int, int, bool, bool> testCase4SS(){
+          bool correct = false;
+          MyArray* systemArr = new MyArray(16);
+          MyArray* userArr = new MyArray(16);
 
-     systemArr->InitSortedDescending(50);
-     userArr->Copy(systemArr);
-     userArr->Reset();
-     systemArr->Reset();
+          systemArr->InitSortedDescending(50);
+          userArr->Copy(systemArr);
+          userArr->Reset();
+          systemArr->Reset();
 
-     systemArr->SelectionSort();
-     userArr->MySelectionSort();
+          systemArr->SelectionSort();
+          userArr->MySelectionSort();
 
-     if(userArr->IsSorted() && userArr->TotalAssigns() == systemArr->TotalAssigns()
-      && userArr->TotalComps() == systemArr->TotalComps()) correct = true;
-     return correct;
+          // Determines if the alorithm is working properly
+          if(userArr->IsSorted() && userArr->TotalAssigns() == systemArr->TotalAssigns()
+           && userArr->TotalComps() == systemArr->TotalComps()) correct = true;
+
+          // Builds the tuple for returning information from the test
+          return make_tuple(userArr->TotalComps(), userArr->TotalAssigns(), userArr->IsSorted(), correct);
+     }
+
+     // ///////////////////////////////////
+     // // End of Selection Sort Test Cases
+     // ///////////////////////////////////
+     void MyArray::MySelectionSort()
+     {
+          for (int i = 0; i < n; ++i)
+          {
+               int min = i; // min = index of the minimum value for the array between
+               for (int j = i + 1; j < n; ++j)
+               { // search for the minimum index j between i and n-1
+                    if (a[j] < a[min])
+                    {
+                         min = j;
+                    }
+               }
+               SwapIndex(i, min);
+          }
 }
-
-///////////////////////////////////
-// End of Selection Sort Test Cases
-///////////////////////////////////
